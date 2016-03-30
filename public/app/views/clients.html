@@ -1,0 +1,43 @@
+<div class="page-header">
+    <h1>
+        Clients
+        <a href="/clients/create" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus"></span>
+            New Client
+        </a>
+    </h1>
+
+</div>
+
+<div class="jumbotron text-center" ng-show="client.processing">
+    <span class="glyphicon glyphicon-repeat spinner"></span>
+    <p>Loading Clients...</p>
+</div>
+
+<table class="table table-bordered table-striped" ng-show="client.clients">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Credit</th>
+        <th>Created Date</th>
+        <th class="col-sm-2"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="person in client.clients">
+
+        <td>{{ person.name }}</td>
+        <td>{{ person.phone }}</td>
+        <td>{{ person.email }}</td>
+        <td>{{ person.credit }}</td>
+        <td>{{ person.created |date:'medium' }}</td>
+        <td class="col-sm-3">
+            <a ng-href="/clients/{{ person._id }}" class="btn btn-danger">Edit</a>
+            <a ng-href="/request/{{ person._id }}" class="btn btn-default">View</a>
+            <a href="#" ng-click="client.deleteClient(person._id)" class="btn btn-primary">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>

@@ -1,0 +1,39 @@
+<div class="page-header">
+    <h1>
+        Queues
+        <a href="/queues/create" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus"></span>
+            New Queue
+        </a>
+    </h1>
+
+</div>
+
+<div class="jumbotron text-center" ng-show="queue.processing">
+    <span class="glyphicon glyphicon-repeat spinner"></span>
+    <p>Loading Queues...</p>
+</div>
+
+<table class="table table-bordered table-striped" ng-show="queue.queues">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Email</th>
+
+        <th class="col-sm-2"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in queue.queues">
+
+        <td>{{ item.name }}</td>
+        <td>{{ item.type }}</td>
+        <td>{{ item.email }}</td>
+        <td class="col-sm-2">
+            <a ng-href="/queues/{{ item._id }}" class="btn btn-danger">Edit</a>
+            <a href="#" ng-click="queue.deleteQueue(item._id)" class="btn btn-primary">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>

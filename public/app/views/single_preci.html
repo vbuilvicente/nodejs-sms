@@ -1,0 +1,54 @@
+<div class="page-header">
+    <h1 ng-if="preci.type == 'create'">Create preci</h1>
+
+    <h1 ng-if="preci.type == 'edit'">Edit preci</h1>
+</div>
+
+<form class="form-horizontal" ng-submit="preci.savePreci()">
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Country</label>
+
+        <div class="col-sm-6">
+            <input required type="text" class="form-control" ng-model="preci.preciData.country">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Code</label>
+
+        <div class="col-sm-6">
+            <input required type="number" class="form-control" ng-model="preci.preciData.code">
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Preci</label>
+
+        <div class="col-sm-6">
+            <input required type="text" class="form-control" ng-model="preci.preciData.preci">
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-6">
+            <button type="submit" class="btn btn-success btn-lg btn-block" ng-if="preci.type == 'create'">Create preci
+            </button>
+            <button type="submit" class="btn btn-success btn-lg btn-block" ng-if="preci.type == 'edit'">Update preci
+            </button>
+        </div>
+    </div>
+
+</form>
+
+<div class="row show-hide-message" ng-show="preci.message">
+    <div class="col-sm-6 col-sm-offset-2">
+
+        <div class="alert alert-info">
+            {{ preci.message }}
+        </div>
+
+    </div>
+</div>

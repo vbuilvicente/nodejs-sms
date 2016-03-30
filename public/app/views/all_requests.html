@@ -1,0 +1,53 @@
+<div class="jumbotron text-center" ng-show="request.processing">
+    <span class="glyphicon glyphicon-repeat spinner"></span>
+    <p>Loading Requests...</p>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="col-md-4">Start date</div>
+            <div id="dateInit" class="input-group date col-md-8">
+                <input ng-model="request.dateinit" type="text" class="form-control"><span class="input-group-addon"><i
+                    class="glyphicon glyphicon-th"></i></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-4">End date</div>
+            <div id="datelast" class="input-group date col-md-8">
+                <input ng-model="request.datefinal" type="text" class="form-control"><span class="input-group-addon"><i
+                    class="glyphicon glyphicon-th"></i></span>
+            </div>
+        </div>
+
+    </div>
+</div>
+<br>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped" ng-show="request.requests">
+            <thead>
+            <tr>
+
+                <th>Type</th>
+                <th>Created Date</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="request in request.requests|daterange:request.dateinit:request.datefinal">
+
+
+                <td>{{ request.type }}</td>
+                <td>{{ request.created |date:'medium' }}</td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $('#dateInit ').datepicker({});
+    $('#datelast ').datepicker({});
+</script>
+

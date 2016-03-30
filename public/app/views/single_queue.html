@@ -1,0 +1,96 @@
+<div class="page-header">
+    <h1 ng-if="queue.type == 'create'">Create queue</h1>
+
+    <h1 ng-if="queue.type == 'edit'">Edit queue</h1>
+</div>
+
+<form class="form-horizontal" ng-submit="queue.saveQueue()">
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Name</label>
+
+        <div class="col-sm-6">
+            <input required type="text" class="form-control" ng-model="queue.queueData.name">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Type</label>
+
+        <div class="col-sm-6">
+            <select required class="form-control" ng-model="queue.queueData.type">
+                <option value="" selected>Please select</option>
+                <option value="Request" selected>Request</option>
+                <option value="Credit Request">Credit Request</option>
+                <option value="Recharge">Recharge</option>
+            </select>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Email</label>
+
+        <div class="col-sm-6">
+            <input required type="email" class="form-control" ng-model="queue.queueData.email">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">User</label>
+
+        <div class="col-sm-6">
+            <input required type="text" class="form-control" ng-model="queue.queueData.username">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Password</label>
+
+        <div class="col-sm-6">
+            <input required type="text" class="form-control" ng-model="queue.queueData.password">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Host</label>
+
+        <div class="col-sm-6">
+            <input required type="text" class="form-control" placeholder="imap.as.com" ng-model="queue.queueData.host">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Port</label>
+
+        <div class="col-sm-6">
+            <input required type="Number" class="form-control" ng-model="queue.queueData.port">
+        </div>
+    </div>
+    <div class="form-group">
+
+            <label class="col-sm-2 control-label">Tls</label>
+
+            <div class="col-sm-6">
+                <input  type="checkbox"  class="form-control" ng-model="queue.queueData.tls">
+            </div>
+
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-6">
+            <button type="submit" class="btn btn-success btn-lg btn-block" ng-if="queue.type == 'create'">Create queue
+            </button>
+            <button type="submit" class="btn btn-success btn-lg btn-block" ng-if="queue.type == 'edit'">Update queue
+            </button>
+        </div>
+    </div>
+
+</form>
+
+<div class="row show-hide-message" ng-show="queue.message">
+    <div class="col-sm-6 col-sm-offset-2">
+
+        <div class="alert alert-info">
+            {{ queue.message }}
+        </div>
+
+    </div>
+</div>

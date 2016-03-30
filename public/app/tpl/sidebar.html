@@ -1,0 +1,96 @@
+<div class="page-sidebar navbar-collapse collapse">
+	<!-- BEGIN SIDEBAR MENU -->
+	<!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+	<!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+	<!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+	<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+	<!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+	<!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+	<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" ng-class="{'page-sidebar-menu-closed': settings.layout.pageSidebarClosed}">
+		<li class="start">
+			<a href="/dashboard">
+			<i class="icon-home"></i>
+			<span class="title">Dashboard</span>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:;">
+			<i class="icon-user"></i>
+			<span class="title">Users</span>
+			<span class="arrow "></span>
+			</a>
+			<ul class="sub-menu">
+
+				<li>
+					<a href="/users/create">
+					<i class="icon-plus"></i>Create User</span>
+					</a>
+				</li>
+				<li>
+					<a href="/users">
+						<i class="icon-briefcase"></i> Users</span>
+					</a>
+				</li>
+
+			</ul>
+		</li>
+
+		<li>
+			<a href="javascript:;">
+			<i class="icon-check"></i>
+			<span class="title">Clients </span>
+				<span class="arrow "></span>
+			</a>
+			<ul class="sub-menu">
+
+				<li>
+					<a href="/clients/create">
+						<i class="icon-plus"></i>Create Clients</span>
+					</a>
+				</li>
+				<li>
+					<a href="/clients">
+						<i class="icon-briefcase"></i> Clients</span>
+					</a>
+				</li>
+
+			</ul>
+		</li>
+		<li>
+			<a href="javascript:;">
+				<i class="icon-basket"></i>
+				<span class="title">Requests </span>
+				<span class="arrow "></span>
+			</a>
+
+		</li>
+		<li>
+			<a href="#" target="_blank">
+			<i class="icon-settings"></i>
+			<span class="title">Setting</span>
+				<span class="arrow "></span>
+			</a>
+			<ul class="sub-menu">
+
+
+				<li>
+					<a href="/setting">
+						<i class="icon-briefcase"></i>System Settings</span>
+					</a>
+				</li>
+				<li>
+					<a href="/queues">
+						<i class="icon-plus"></i>Queue</span>
+					</a>
+				</li>
+				<li>
+					<a href="/precis">
+						<i class="icon-diamond"></i>Precis</span>
+					</a>
+				</li>
+
+			</ul>
+		</li>
+	</ul>
+	<!-- END SIDEBAR MENU -->
+</div>	
