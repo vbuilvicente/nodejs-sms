@@ -22,9 +22,5 @@ exports.Init=function () {
             console.log('Created admin successful ');
             return true;
         }
-
-
-
-
     });
 }
