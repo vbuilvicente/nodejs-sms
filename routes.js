@@ -85,11 +85,12 @@ exports = module.exports = function (app, express) {
         .delete(QueueManager.deleteQueue);
     apiRouter.get("/restart", function (req, res) {
         Main.Start();
+        res.json({message: 'Run!'});
 
     });
     apiRouter.get("/stop", function (req, res) {
         Main.Stop();
-
+        res.json({message: 'Stop!'});
     });
     apiRouter.route('/preci/')
         .post(PreciManager.createPreci)
