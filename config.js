@@ -1,6 +1,6 @@
 module.exports = {
     port: process.env.PORT || 5901,
-    database: 'mongodb://localhost:27017/example',
+    database: 'mongodb://vbuilvicente:S0l0y0lol@ds011860.mlab.com:11860/nodejs-sms',
     secret: 'ilovescotchscotchyscotchscotch',
     smtpConfig: {
         host: 'smtp.gmail.com',
