@@ -7,8 +7,8 @@ module.exports = {
         port: 465,
         secure: true, // use SSL
         auth: {
-            user: 'clientes.kefacil@gmail.com',
-            pass: 'Dsagales0312'
+            user: 'vbuilvicente@gmail.com',
+            pass: 'S0l0y0lol'
         }
     },
     sms: {
