@@ -10,6 +10,7 @@ var mongoose = require('mongoose');
 var config = require('./config');
 var path = require('path');
 var CronJob = require('cron').CronJob;
+var InitConfig =require('./init');
 
 
 // APP CONFIGURATION ==================
@@ -71,7 +72,7 @@ var job = new CronJob('00 30 11 * * *', function () {
 // SEND USERS TO FRONTEND ------------
 // has to be registered after API ROUTES
 
-
+InitConfig.Init();
 // START THE SERVER
 // ====================================
 app.listen(config.port);
