@@ -1,4 +1,4 @@
-exports.Init=function () {
+
 
     var mongoose   = require('mongoose');
     var config 	   = require('./config');
@@ -23,4 +23,3 @@ exports.Init=function () {
             return true;
         }
     });
-}

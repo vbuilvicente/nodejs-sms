@@ -72,25 +72,25 @@ var job = new CronJob('00 30 11 * * *', function () {
 // SEND USERS TO FRONTEND ------------
 // has to be registered after API ROUTES
 
-var User = mongoose.model('User');
-var user = new User();
-user.name = "admin";
-user.username = "admin";
-user.password = "admin";
-
-user.save(function (err) {
-    if (err) {
-        // duplicate entry
-        if (err.code == 11000)
-            console.log('Create admin user error');
-        return false;
-
-    }
-    else{
-        console.log('Created admin successful ');
-        return true;
-    }
-});
+// var User = mongoose.model('User');
+// var user = new User();
+// user.name = "admin";
+// user.username = "admin";
+// user.password = "admin";
+//
+// user.save(function (err) {
+//     if (err) {
+//         // duplicate entry
+//         if (err.code == 11000)
+//             console.log('Create admin user error');
+//         return false;
+//
+//     }
+//     else{
+//         console.log('Created admin successful ');
+//         return true;
+//     }
+// });
 
 // START THE SERVER
 // ====================================
