@@ -32,7 +32,7 @@ app.use(function (req, res, next) {
 app.use(morgan('dev'));
 
 // connect to our database (hosted on modulus.io)
-mongoose.connect(config.database);
+mongoose.createConnection(config.database);
 //setup database
 require('./app/models/models')(mongoose);
 var RequestManager = require('./app/controllers/RequestManager');
