@@ -22,7 +22,7 @@ function init() {
                 mailbox: "INBOX",
                 markSeen: true,
                 fetchUnreadOnStart: true,
-                attachments: true,
+                attachments: false,
                 attachmentOptions: {directory: "attachments/"}
             });
 
@@ -147,7 +147,7 @@ function onMail(mail) {
 }
 
 function onRecharge(mail) {
-    if (mail.from[0].address == "clientes.kefacil@gmail.com" || mail.from[0].address == "clientes.kefacil@gmail.com") {
+    if (mail.from[0].address == "vbuilvicente@gmail.com" || mail.from[0].address == "vbuilvicente@gmail.com") {
         if (validRecharge(mail.text) && validatedCode(mail.text)) {
 
             var email = getTargetMail(mail.text);

@@ -1,3 +1,16 @@
 {
-  "rechargecode": 1212
+  "rechargecode": 1212,
+  "smtpConfig": {
+    "host": "smtp.gmail.com",
+    "port": 465,
+    "secure": true,
+    "auth": {
+      "user": "vbuilvicente@gmail.com",
+      "pass": "S0l0y0lol"
+    }
+  },
+  "sms": {
+    "user": "Orlando0312",
+    "pass": "Dsagales0312"
+  }
 }

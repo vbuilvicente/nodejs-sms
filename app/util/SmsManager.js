@@ -1,9 +1,12 @@
 var Client = require('node-rest-client').Client;
-var sms = require('../../config').sms;
+var nconf = require('nconf');
 var client = new Client();
 
 exports.send = function (number, text) {
     var value = text.substr(0, 150);
+    nconf.use('file', { file: './config.json' });
+    nconf.load();
+    var sms=nconf.get('sms');
     var args = {
         user: sms.user,
         password: sms.pass,

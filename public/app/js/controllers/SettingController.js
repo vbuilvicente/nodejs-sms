@@ -3,7 +3,7 @@ SMS.controller('settingController', function ($http) {
 
     var vm = this;
 
-    $http.get('/api/coderecharge/')
+    $http.get('/api/setting/')
         .success(function (data) {
             vm.settingData = data;
 
@@ -33,9 +33,8 @@ SMS.controller('settingController', function ($http) {
 
     };
     vm.SaveCode = function () {
-      var data={code:parseInt(vm.settingData.code)};
 
-        $http.post('/api/coderecharge/',data)
+        $http.post('/api/setting/',vm.settingData)
             .success(function (data) {
 
 

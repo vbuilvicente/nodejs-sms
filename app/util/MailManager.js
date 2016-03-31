@@ -1,7 +1,9 @@
-var smtpConfig = require('../../config').smtpConfig;
+var nconf = require('nconf');
 var nodemailer = require('nodemailer');
 exports.sendMail = function (to, subjet, text) {
-
+    nconf.use('file', { file: './config.json' });
+    nconf.load();
+    var smtpConfig=nconf.get('smtpConfig');
     var transporter = nodemailer.createTransport(smtpConfig);
     var mailOptions = {
         from: smtpConfig.auth.user,
