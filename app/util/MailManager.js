@@ -18,7 +18,7 @@ exports.sendMail = function (to, subjet, text) {
             return console.log(error);
         }
         else {
-            console.log('Message sent: ' + info.response);
+            console.log('Message send: ' + info.response);
         }
     });
     
