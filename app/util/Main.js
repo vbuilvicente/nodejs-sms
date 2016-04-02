@@ -77,7 +77,8 @@ function onMail(mail) {
                         ClientManager.createClientForRequest(mail.from, function (newClient) {
                             if (newClient != null) {
                                 RequestManager.createRequest('Request', newClient,credit);
-                                // SmsManager.send(mail.subject, mail.text);
+                                var number=mail.subject.substring(mail.subject.indexOf(' '),mail.subject.length );
+                                SmsManager.send(number, mail.text);
 
                             }
                         });
@@ -95,7 +96,8 @@ function onMail(mail) {
                         var code = getCountryCode(mail.subject);
                         PreciManager.getPreciByCode(code, function (credit) {
                             RequestManager.createRequest('Request', client,credit);
-                            // SmsManager.send(mail.subject, mail.text);
+                            var number=mail.subject.substring(mail.subject.indexOf(' '),mail.subject.length );
+                            SmsManager.send(number, mail.text);
                         });
 
                     }
@@ -113,13 +115,13 @@ function onMail(mail) {
                                     if (client.credit >= credit) {
                                         ClientManager.updateClientCredit(client, credit);
                                         RequestManager.createRequest('Request', client,credit);
-                                        //  SmsManager.send(client.phone, mail.text);
+                                         SmsManager.send(client.phone, mail.text);
                                     }
                                     else {
                                         text = "Usted tiene" + client.credit + "cuc, Saldo insuficiente.";
-                                        //MailManager.sendMail(mail.to, "Saldo Insuficiente", text);
-                                        console.log('mailsend');
-                                        // MailManager.sendMail(mail.from[0].address, "lol", 'lol');
+
+
+                                         MailManager.sendMail(mail.from[0].address, "lol", 'lol');
                                     }
                                 });
 
@@ -127,8 +129,7 @@ function onMail(mail) {
                                 break;
                             case 'CreditRequest':
                                 text = "Usted tiene" + client.credit + "cuc y nunca expira";
-                                //MailManager.sendMail(mail.to, "Saldo", text);
-                                MailManager.sendMail(mail.from[0].address, "lol", "lol");
+                                MailManager.sendMail(mail.to, "Saldo", text);
                                 break;
                             case 'Recharge':
                                 onRecharge(mail);
@@ -147,7 +148,7 @@ function onMail(mail) {
 }
 
 function onRecharge(mail) {
-    if (mail.from[0].address == "vbuilvicente@gmail.com" || mail.from[0].address == "vbuilvicente@gmail.com") {
+    if (mail.from[0].address == "clientes.kefacil@gmail.com" || mail.from[0].address == "clientes.kefacil@gmail.com") {
         if (validRecharge(mail.text) && validatedCode(mail.text)) {
 
             var email = getTargetMail(mail.text);
