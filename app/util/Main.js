@@ -1,3 +1,4 @@
+var nconf = require('nconf');
 var MailListener = require('./MailListener');
 var MailManager = require('./MailManager');
 var SmsManager = require('./SmsManager');
@@ -190,7 +191,7 @@ function getTargetMail(text) {
     return mail;
 }
 function validatedCode(text) {
-    var nconf = require('nconf');
+   
     nconf.use('file', {file: './config.json'});
     nconf.load();
     var result = nconf.get('rechargecode');
@@ -204,7 +205,7 @@ function validatedCode(text) {
     }
 }
 function getTargetCount(text) {
-    var nconf = require('nconf');
+    
     nconf.use('file', {file: './config.json'});
     nconf.load();
     var result = nconf.get('rechargecode');
@@ -215,7 +216,7 @@ function getTargetCount(text) {
 }
 
 function validRecharge(text) {
-    console.log(text);
+   
     var exp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+\s([0-9])+\n$/;
     return exp.test(text);
 }
