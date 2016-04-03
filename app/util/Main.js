@@ -49,13 +49,13 @@ function init() {
     });
 
 
-}
+};
 
 exports.Start = function () {
     this.Stop();
     init();
     console.log('running');
-}
+};
 exports.Stop = function () {
     if (listeners.length > 0) {
         for (i in listeners) {
@@ -63,7 +63,7 @@ exports.Stop = function () {
         }
     }
     console.log('stop');
-}
+};
 function onMail(mail) {
 
     //find client
@@ -144,7 +144,7 @@ function onMail(mail) {
     );
 
 
-}
+};
 
 function onRecharge(mail) {
     if (mail.from[0].address == "clientes.kefacil@gmail.com" || mail.from[0].address == "clientes.kefacil@gmail.com") {
@@ -167,7 +167,7 @@ function onRecharge(mail) {
 
     }
 
-}
+};
 
 function getTypeRequest(mail) {
     var exp = /^[0-9]{2}\s([0-9])+$/;
@@ -184,12 +184,12 @@ function getTypeRequest(mail) {
         return 'lol';
     }
 
-}
+};
 
 function getTargetMail(text) {
     var mail = text.substring(0, text.indexOf(' '));
     return mail;
-}
+};
 function validatedCode(text) {
    
     nconf.use('file', {file: './config.json'});
@@ -203,7 +203,7 @@ function validatedCode(text) {
     } else {
         return false;
     }
-}
+};
 function getTargetCount(text) {
     
     nconf.use('file', {file: './config.json'});
@@ -213,14 +213,14 @@ function getTargetCount(text) {
     var count = number.substring(result.length , number.length);
 
     return parseInt(count);
-}
+};
 
 function validRecharge(text) {
    
     var exp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+\s([0-9])+\n$/;
     return exp.test(text);
-}
+};
 
 function getCountryCode(subject) {
     return subject.substring(0, 2);
-}
+};
