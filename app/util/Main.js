@@ -195,17 +195,21 @@ function validatedCode(text) {
     nconf.load();
     var result = nconf.get('rechargecode');
 
-    var number = parseInt(text.substring(text.indexOf(' '), text.length - 2));
-
-    if (result == number) {
+    var number = text.substring(text.indexOf(' ')+1, result.length);
+    var code = parseInt(number.substring(0 , result.length));
+    if (code == number) {
         return true;
     } else {
         return false;
     }
 }
 function getTargetCount(text) {
-    var number = text.substring(text.indexOf(' '), text.length - 1);
-    var count = number.substring(number.length - 1, number.length);
+    var nconf = require('nconf');
+    nconf.use('file', {file: './config.json'});
+    nconf.load();
+    var result = nconf.get('rechargecode');
+    var number =text.substring(text.indexOf(' ')+1, text.length);
+    var count = number.substring(result.length , number.length);
 
     return parseInt(count);
 }
