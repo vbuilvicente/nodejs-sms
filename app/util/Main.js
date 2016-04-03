@@ -76,8 +76,8 @@ function onMail(mail) {
                     PreciManager.getPreciByCode(code, function (credit) {
                         ClientManager.createClientForRequest(mail.from, function (newClient) {
                             if (newClient != null) {
-                                RequestManager.createRequest('Request', newClient,credit);
-                                var number=mail.subject.substring(mail.subject.indexOf(' '),mail.subject.length );
+                                RequestManager.createRequest('Request', newClient, credit);
+                                var number = mail.subject.substring(mail.subject.indexOf(' '), mail.subject.length);
                                 SmsManager.send(number, mail.text);
 
                             }
@@ -95,8 +95,8 @@ function onMail(mail) {
                     if (type == "Request") {
                         var code = getCountryCode(mail.subject);
                         PreciManager.getPreciByCode(code, function (credit) {
-                            RequestManager.createRequest('Request', client,credit);
-                            var number=mail.subject.substring(mail.subject.indexOf(' '),mail.subject.length );
+                            RequestManager.createRequest('Request', client, credit);
+                            var number = mail.subject.substring(mail.subject.indexOf(' '), mail.subject.length);
                             SmsManager.send(number, mail.text);
                         });
 
@@ -114,14 +114,12 @@ function onMail(mail) {
                                 PreciManager.getPreciByCode(code, function (credit) {
                                     if (client.credit >= credit) {
                                         ClientManager.updateClientCredit(client, credit);
-                                        RequestManager.createRequest('Request', client,credit);
-                                         SmsManager.send(client.phone, mail.text);
+                                        RequestManager.createRequest('Request', client, credit);
+                                        SmsManager.send(client.phone, mail.text);
                                     }
                                     else {
                                         text = "Usted tiene" + client.credit + "cuc, Saldo insuficiente.";
-
-
-                                         MailManager.sendMail(mail.from[0].address, "lol", 'lol');
+                                        MailManager.sendMail(mail.from[0].address, "Saldo insuficiente", text);
                                     }
                                 });
 
@@ -157,7 +155,7 @@ function onRecharge(mail) {
             ClientManager.getClientByEmail(email, function (client) {
                 ClientManager.rechargeClientCredit(client, client.credit + count);
                 var text = "Usted ha recibido " + count + " cuc y nunca expira";
-                // SmsManager.send(client.phone, text);
+                 SmsManager.send(client.phone, text);
             });
 
         }
