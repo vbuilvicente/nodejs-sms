@@ -75,7 +75,7 @@ exports.updateQueue = function (req, res) {
                  res.json({message:err.code});
             }
             else{
-                res.json({message: 'Queue updated!'});
+                res.json({message:  queue.tls});
             }
 
         });
