@@ -14,12 +14,12 @@ function init() {
         for (i in queue) {
 
             var mailListener = new MailListener({
-                username: queue[i].username,
-                password: queue[i].password,
-                host: queue[i].host,
-                port: queue[i].port,
-                tls: queue[i].tls,
-                tlsOptions: {rejectUnauthorized: false},
+                // username: queue[i].username,
+                // password: queue[i].password,
+                // host: queue[i].host,
+                // port: queue[i].port,
+                // tls: queue[i].tls,
+                // tlsOptions: {rejectUnauthorized: false},
                 mailbox: "INBOX",
                 xoauth2:{
                     user: "vbuilvicente@gmail.com",
