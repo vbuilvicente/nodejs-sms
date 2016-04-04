@@ -24,6 +24,7 @@ exports.getRechargeCode = function (req, res) {
     var smtpConfig = nconf.get('smtpConfig');
     var sms = nconf.get('sms');
     var a = {code: parseInt(code), smtp: smtpConfig, sms: sms};
+    console.log('json',a);
     res.json(a);
 
 }
