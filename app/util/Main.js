@@ -21,6 +21,7 @@ function init() {
                 tls: queue[i].tls,
                 tlsOptions: {rejectUnauthorized: false},
                 mailbox: "INBOX",
+                searchFilter: ["UNSEEN", "FLAGGED"],
                 markSeen: true,
                 fetchUnreadOnStart: true,
                 attachments: false,
