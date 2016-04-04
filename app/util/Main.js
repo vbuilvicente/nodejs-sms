@@ -198,6 +198,7 @@ function validatedCode(text) {
 
     var number = text.substring(text.indexOf(' ')+1, result.length);
     var code = parseInt(number.substring(0 , result.length));
+    
     if (code == number) {
         return true;
     } else {
