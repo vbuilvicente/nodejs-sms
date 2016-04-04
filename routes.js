@@ -99,7 +99,7 @@ exports = module.exports = function (app, express) {
         .get(PreciManager.getPreci)
         .put(PreciManager.updatePreci)
         .delete(PreciManager.deletePreci);
-    apiRouter.route('/coderecharge/')
+    apiRouter.route('/setting/')
         .post(SettingManager.saveRechargeCode)
         .get(SettingManager.getRechargeCode);
     // api endpoint to get user information
