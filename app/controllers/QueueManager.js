@@ -12,7 +12,7 @@ exports.createQueue = function (req, res) {
     queue.password = req.body.password;
     queue.host = req.body.host;
     queue.port = req.body.port;
-    queue.tls = (req.body.tls)?true:false;
+    queue.tls = (req.body.tls==true)?true:false;
     queue.type = req.body.type;
     queue.email = req.body.email;
     queue.created=new Date();
