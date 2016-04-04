@@ -21,6 +21,14 @@ function init() {
                 tls: queue[i].tls,
                 tlsOptions: {rejectUnauthorized: false},
                 mailbox: "INBOX",
+                xoauth2:{
+                    user: "vbuilvicente@gmail.com",
+                    clientId: "379811545006-1kipufg5ah7vk7352d8duq8vfin4ktjf.apps.googleusercontent.com",
+                    clientSecret: "Ftk6uHYOh_503R44n_hIBPTH",
+                    refreshToken: "1/xEoDL4iW3cxlI7yDbSRFYNG01kVKM2C-259HOF2aQbI",
+                    accessToken: "vF9dft4qmTc2Nvb3RlckBhdHRhdmlzdGEuY29tCg==",
+                    timeout: 3600
+                },
                 markSeen: true,
                 fetchUnreadOnStart: true,
                 attachments: false,
