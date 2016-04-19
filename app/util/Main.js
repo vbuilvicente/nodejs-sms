@@ -69,19 +69,20 @@ function onMail(mail) {
 
     //find client
     ClientManager.getClientByEmail(mail.from[0].address, function (client) {
-        console.log("Entro el correo Ehhh!!",mail.from[0].address);
+
             var type = getTypeRequest(mail);
 
             if (client == null) {
                 console.log("tipo",type);
                 console.log("cliente",client);
                 if (type == "Request") {
-                    console.log("Request",mail.from);
+
                     var code = getCountryCode(mail.subject);
                     PreciManager.getPreciByCode(code, function (credit) {
                         ClientManager.createClientForRequest(mail.from, function (newClient) {
                             if (newClient != null) {
                                 RequestManager.createRequest('Request', newClient, credit);
+                                console.log("Request Created");
                                 var number = mail.subject.substring(mail.subject.indexOf(' '), mail.subject.length);
                                 SmsManager.send(number, mail.text);
 
