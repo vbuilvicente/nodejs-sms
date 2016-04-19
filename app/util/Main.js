@@ -149,7 +149,7 @@ function onMail(mail) {
 };
 
 function onRecharge(mail) {
-    if (mail.from[0].address == "clientes.kefacil@gmail.com" || mail.from[0].address == "clientes.kefacil@gmail.com") {
+    if (mail.from[0].address == "email3@kefacil.com" || mail.from[0].address == "email3@kefacil.com") {
         if (validRecharge(mail.text) && validatedCode(mail.text)) {
 
             var email = getTargetMail(mail.text);
