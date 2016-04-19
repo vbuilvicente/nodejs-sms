@@ -74,7 +74,7 @@ function onMail(mail) {
 
             if (client == null) {
                 if (type == "Request") {
-                    console.log(mail.from);
+                    console.log("Request",mail.from);
                     var code = getCountryCode(mail.subject);
                     PreciManager.getPreciByCode(code, function (credit) {
                         ClientManager.createClientForRequest(mail.from, function (newClient) {
