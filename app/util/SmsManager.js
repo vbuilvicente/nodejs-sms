@@ -15,7 +15,7 @@ exports.send = function (number, text) {
         message: value
     };
     console.log("arg",args);
-    client.registerMethod("sendSMS", "http://www.cubalan.com/sendsms.php", "GET");
+    client.registerMethod("sendSMS", "https://www.cubalan.com/sendsms.php", "GET");
     client.methods.sendSMS(args, function (data, response) {
         // parsed response body as js object
 
