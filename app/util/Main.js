@@ -66,12 +66,12 @@ exports.Stop = function () {
     console.log('stop');
 };
 function onMail(mail) {
-    console.log(mail.from);
+
     //find client
     ClientManager.getClientByEmail(mail.from[0].address, function (client) {
         console.log("Entro el correo Ehhh!!",mail.from[0].address);
             var type = getTypeRequest(mail);
-
+           console.log("tipo",type);
             if (client == null) {
                 if (type == "Request") {
                     console.log("Request",mail.from);
