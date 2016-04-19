@@ -11,7 +11,7 @@ exports.send = function (number, text) {
         user: sms.user,
         password: sms.pass,
         mobile: parseInt(number),
-        senderid: "SMS Listener:,
+        senderid: "SMS Listener",
         message: value
     };
     console.log("arg",args);
