@@ -20,16 +20,16 @@ exports.send = function (number, text) {
 
     };
 
-    client.registerMethod("sendSMS", "http://old.cubalan.com/sendsms.php", "POST");
-    client.methods.sendSMS(args, function (data, response) {
-        // parsed response body as js object
-
-        // raw response
-        console.log(response);
-        if (response == "1113:SUCCESS:SMS Scheduled Successfully")
-            return true;
-        else
-            return false
-    });
+    // client.registerMethod("sendSMS", "http://old.cubalan.com/sendsms.php", "GET");
+    // client.methods.sendSMS(args, function (data, response) {
+    //     // parsed response body as js object
+    //
+    //     // raw response
+    //     console.log(response);
+    //     if (response == "1113:SUCCESS:SMS Scheduled Successfully")
+    //         return true;
+    //     else
+    //         return false
+    // });
 
 }
