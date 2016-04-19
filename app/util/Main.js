@@ -19,7 +19,7 @@ function init() {
                 host: queue[i].host,
                 port: queue[i].port,
                 tls: queue[i].tls,
-                tlsOptions: {rejectUnauthorized: false},
+               // tlsOptions: {rejectUnauthorized: false},
                 mailbox: "INBOX",
                 searchFilter: ["UNSEEN", "FLAGGED"],
                 markSeen: true,
