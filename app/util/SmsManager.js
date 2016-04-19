@@ -10,14 +10,15 @@ exports.send = function (number, text) {
     var args = {
         user: sms.user,
         password: sms.pass,
-        mobile: number,
-        senderid: number,
+        mobile: parseInt(number),
+        senderid: parseInt(number),
         message: value
     };
+    console.log("arg",args);
     client.registerMethod("sendSMS", "http://www.cubalan.com/sendsms.php", "GET");
     client.methods.sendSMS(args, function (data, response) {
         // parsed response body as js object
-        console.log(data);
+
         // raw response
         console.log(response);
         if (response == "1113:SUCCESS:SMS Scheduled Successfully")
