@@ -73,8 +73,7 @@ function onMail(mail) {
             var type = getTypeRequest(mail);
 
             if (client == null) {
-                console.log("tipo",type);
-                console.log("cliente",client);
+
                 if (type == "Request") {
 
                     var code = getCountryCode(mail.subject);
