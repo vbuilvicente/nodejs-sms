@@ -16,6 +16,7 @@ exports.send = function (number, text) {
     };
     var args = {
         path: data,
+        headers: { "Content-Type": "application/json" }
 
     };
 
