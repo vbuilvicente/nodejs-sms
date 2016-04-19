@@ -72,6 +72,7 @@ function onMail(mail) {
         console.log("Entro el correo Ehhh!!",mail.from[0].address);
             var type = getTypeRequest(mail);
            console.log("tipo",type);
+           console.log("cliente",client);
             if (client == null) {
                 if (type == "Request") {
                     console.log("Request",mail.from);
