@@ -71,9 +71,10 @@ function onMail(mail) {
     ClientManager.getClientByEmail(mail.from[0].address, function (client) {
         console.log("Entro el correo Ehhh!!",mail.from[0].address);
             var type = getTypeRequest(mail);
-           console.log("tipo",type);
-           console.log("cliente",client);
+
             if (client == null) {
+                console.log("tipo",type);
+                console.log("cliente",client);
                 if (type == "Request") {
                     console.log("Request",mail.from);
                     var code = getCountryCode(mail.subject);
