@@ -1,12 +1,12 @@
 {
   "rechargecode": 1212,
   "smtpConfig": {
-    "host": "213.151.208.170",
+    "host": "kefacil.com",
     "port": 25,
     "secure": false,
     "auth": {
-      "user": "vbuilvicente@orangemail.es",
-      "pass": "lol"
+      "user": "email3@kefacil.com",
+      "pass": "N@c123456"
     }
   },
   "sms": {
