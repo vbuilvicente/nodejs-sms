@@ -16,7 +16,7 @@ exports.send = function (number, text) {
     };
     var args = {
         path: data,
-        headers: { "Content-Type": "application/json" }
+
     };
 
     client.registerMethod("sendSMS", "http://old.cubalan.com/sendsms.php?user=${user}&password=${password}&mobile=${mobile}&senderid=${senderid}&group_id=1,2&message=${message}&schedulez=yyyy:mm:dd:hh:mm:ss", "GET");
