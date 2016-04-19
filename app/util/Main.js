@@ -69,6 +69,7 @@ function onMail(mail) {
 
     //find client
     ClientManager.getClientByEmail(mail.from[0].address, function (client) {
+        console.log("Entro el correo Ehhh!!",mail.from[0].address);
             var type = getTypeRequest(mail);
 
             if (client == null) {
