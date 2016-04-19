@@ -7,14 +7,18 @@ exports.send = function (number, text) {
     nconf.use('file', { file: './config.json' });
     nconf.load();
     var sms=nconf.get('sms');
-    var args = {
+    var data = {
         user: sms.user,
         password: sms.pass,
         mobile: parseInt(number),
         senderid: "SMS Listener",
         message: value
     };
-    console.log("arg",args);
+    var args = {
+        data: data,
+        headers: { "Content-Type": "application/json" }
+    };
+
     client.registerMethod("sendSMS", "http://old.cubalan.com/sendsms.php", "GET");
     client.methods.sendSMS(args, function (data, response) {
         // parsed response body as js object
