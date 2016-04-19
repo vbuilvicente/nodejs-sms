@@ -4,15 +4,15 @@ var client = new Client();
 
 exports.send = function (number, text) {
     var value = text.substr(0, 150);
-    nconf.use('file', { file: './config.json' });
+    nconf.use('file', {file: './config.json'});
     nconf.load();
-    var sms=nconf.get('sms');
+    var sms = nconf.get('sms');
     var data = {
-        user: sms.user,
-        password: sms.pass,
-        mobile: parseInt(number),
-        senderid: "SMS Listener",
-        message: value
+        "user": sms.user,
+        "password": sms.pass,
+        "mobile": parseInt(number),
+        "senderid": "SMS Listener",
+        "message": value
     };
     var args = {
         path: data,
