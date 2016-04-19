@@ -11,16 +11,16 @@ exports.send = function (number, text) {
         "user": sms.user,
         "password": sms.pass,
         "mobile": parseInt(number),
-        "senderid": "SMS Listener",
+        "senderid": "SMS",
         "message": value
     };
     var args = {
-        path: data,
+        data: data,
         headers: { "Content-Type": "application/json" }
 
     };
 
-    client.registerMethod("sendSMS", "http://old.cubalan.com/sendsms.php?user=${user}&password=${password}&mobile=${mobile}&senderid=${senderid}&group_id=1,2&message=${message}&schedulez=yyyy:mm:dd:hh:mm:ss", "GET");
+    client.registerMethod("sendSMS", "http://old.cubalan.com/sendsms.php", "POST");
     client.methods.sendSMS(args, function (data, response) {
         // parsed response body as js object
 
