@@ -82,7 +82,7 @@ function onMail(mail) {
                             if (newClient != null) {
                                 RequestManager.createRequest('Request', newClient, credit);
                                 console.log("Request Created");
-                                var number = mail.subject.substring(mail.subject.indexOf(' '), mail.subject.length);
+                                var number = mail.subject.replace(' ','');
                                 SmsManager.send(number, mail.text);
 
                             }
@@ -101,7 +101,7 @@ function onMail(mail) {
                         var code = getCountryCode(mail.subject);
                         PreciManager.getPreciByCode(code, function (credit) {
                             RequestManager.createRequest('Request', client, credit);
-                            var number = mail.subject.substring(mail.subject.indexOf(' '), mail.subject.length);
+                            var number = mail.subject.replace(' ','');
                             SmsManager.send(number, mail.text);
                         });
 
