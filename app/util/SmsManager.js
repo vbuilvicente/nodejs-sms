@@ -15,21 +15,18 @@ exports.send = function (number, text) {
         message: value
     };
     var args = {
-        parameters: data,
+        data: data,
         headers: { "Content-Type": "application/json" }
 
     };
-  console.log("argumentos",args);
-    client.registerMethod("sendSMS", "http://old.cubalan.com/sendsms.php", "GET");
+
+    client.registerMethod("sendSMS", "http://old.cubalan.com/sendsms.php", "POST");
     client.methods.sendSMS(args, function (data, response) {
         // parsed response body as js object
            console.log(data);
         // raw response
         console.log(response);
-        if (response == "1113:SUCCESS:SMS Scheduled Successfully")
-            return true;
-        else
-            return false
+        
     });
 
 }
