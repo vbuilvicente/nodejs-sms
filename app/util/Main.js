@@ -137,7 +137,7 @@ function onMail(mail) {
                                 MailManager.sendMail(mail.from[0].address, "Saldo", text);
                                 break;
                             case 'Recharge':
-                                console.log("Tipo",type);
+                                console.log("Tipo", type);
                                 onRecharge(mail);
                                 break;
                             default:
@@ -161,13 +161,12 @@ function onRecharge(mail) {
 
             var email = getTargetMail(mail.text);
             var count = getTargetCount(mail.text);
-            console.log("count",count);
-            console.log("email",email);
+           
             ClientManager.getClientByEmail(email, function (client) {
-                console.log("client",client);
-                var value=parseFloat(client.credit) +parseFloat(count);
-                console.log("recarga",value);
-                ClientManager.rechargeClientCredit(client,value );
+
+                var value = parseFloat(client.credit) + parseFloat(count);
+
+                ClientManager.rechargeClientCredit(client, value);
                 var text = "Usted ha recibido " + count + " cuc y nunca expira";
                 SmsManager.send(client.phone, text);
             });
@@ -222,14 +221,11 @@ function getTargetCount(text) {
     var nconf = require('nconf');
     nconf.use('file', {file: './config.json'});
     nconf.load();
-    var result =String( nconf.get('rechargecode'));
+    var result = String(nconf.get('rechargecode'));
     var number = text.substring(text.indexOf(' ') + 1, text.length);
     var count = number.substring(result.length, number.length);
-    var code = number.substring(0 , result.length);
-    console.log("result",result);
-    console.log("number",number);
-    console.log("count",parseInt(count));
-    console.log("code",parseInt(code));
+    var code = number.substring(0, result.length);
+
     return parseInt(count);
 };
 
