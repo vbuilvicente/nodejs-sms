@@ -118,14 +118,15 @@ function onMail(mail) {
                             case 'Request':
                                 var code = getCountryCode(mail.subject);
                                 PreciManager.getPreciByCode(code, function (credit) {
-                                    console.log()
+                                    console.log(parseFloat(client.credit));
+                                    console.log( parseFloat(credit));
                                     if (parseFloat(client.credit) >= parseFloat(credit)) {
                                         ClientManager.updateClientCredit(client, credit);
                                         RequestManager.createRequest('Request', client, credit);
                                         SmsManager.send(client.phone, mail.text);
                                     }
                                     else {
-                                        text = "Usted tiene" + client.credit + "cuc, Saldo insuficiente.";
+                                        text = "Usted tiene " + client.credit + "cuc, Saldo insuficiente.";
                                         MailManager.sendMail(mail.from[0].address, "Saldo insuficiente", text);
                                     }
                                 });
