@@ -26,7 +26,7 @@ exports.send = function (number, text) {
            console.log(data);
         // raw response
         console.log(response);
-        
+
     });
 
 }
