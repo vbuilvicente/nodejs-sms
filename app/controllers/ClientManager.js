@@ -133,7 +133,7 @@ exports.updateClientCredit = function (clientupdate, newcredit) {
 
         if (err) return false;
 
-        if (newcredit) client.credit = client.credit - newcredit;
+        if (newcredit) client.credit = parseFloat(client.credit )- parseFloat(newcredit);
 
         // save the Client
         client.save(function (err) {

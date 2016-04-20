@@ -155,7 +155,7 @@ function onMail(mail) {
 };
 
 function onRecharge(mail) {
-  
+
     if (mail.to[0].address == "email3@kefacil.com" || mail.to[0].address == "email3@kefacil.com") {
         if (validRecharge(mail.text) && validatedCode(mail.text)) {
 
