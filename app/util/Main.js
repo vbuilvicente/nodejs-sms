@@ -73,8 +73,6 @@ function onMail(mail) {
             var type = getTypeRequest(mail);
 
             if (client === null) {
-                console.log("Nulo",type);
-                console.log("Nulo",mail.from[0].address);
 
                 if (type == "Request") {
 
