@@ -132,8 +132,7 @@ function onMail(mail) {
 
                                 break;
                             case 'CreditRequest':
-                                
-                                text = "Usted tiene" + client.credit + "cuc y nunca expira";
+                                text = "Usted tiene " + client.credit + "cuc y nunca expira";
                                 MailManager.sendMail(mail.from[0].address, "Saldo", text);
                                 break;
                             case 'Recharge':
@@ -146,6 +145,7 @@ function onMail(mail) {
                     }
                 }
             }
+        client=null;
         }
     );
 
