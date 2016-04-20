@@ -226,7 +226,7 @@ function getTargetCount(text) {
     var number = text.substring(text.indexOf(' ') + 1, text.length);
     var count = number.substring(result.length, number.length);
     var code = number.substring(0 , result.length);
-    console.log("result",result.length)
+    console.log("result",result);
     console.log("number",number);
     console.log("count",parseInt(count));
     console.log("code",parseInt(code));
