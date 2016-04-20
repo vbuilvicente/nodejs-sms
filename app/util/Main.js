@@ -71,7 +71,7 @@ function onMail(mail) {
     ClientManager.getClientByEmail(mail.from[0].address, function (client) {
 
             var type = getTypeRequest(mail);
-
+        console.log("client",client.email);
             if (client === null) {
                 console.log("Nulo",type);
 
@@ -113,7 +113,7 @@ function onMail(mail) {
                 }
                 else {
                     if (client.valid) {
-                        console.log("TIPO",type);
+
                         var text = "";
                         switch (type) {
                             case 'Request':
