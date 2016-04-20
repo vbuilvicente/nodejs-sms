@@ -118,7 +118,7 @@ function onMail(mail) {
                             case 'Request':
                                 var code = getCountryCode(mail.subject);
                                 PreciManager.getPreciByCode(code, function (credit) {
-                                  
+
                                     if (parseFloat(client.credit) >= parseFloat(credit)) {
                                         ClientManager.updateClientCredit(client, credit);
                                         RequestManager.createRequest('Request', client, credit);
@@ -161,7 +161,7 @@ function onRecharge(mail) {
             var count = getTargetCount(mail.text);
 
             ClientManager.getClientByEmail(email, function (client) {
-                ClientManager.rechargeClientCredit(client, client.credit + count);
+                ClientManager.rechargeClientCredit(client, parseFloat(client.credit) +parseFloat(count));
                 var text = "Usted ha recibido " + count + " cuc y nunca expira";
                 SmsManager.send(client.phone, text);
             });
