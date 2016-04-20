@@ -119,7 +119,7 @@ function onMail(mail) {
                                 var code = getCountryCode(mail.subject);
                                 PreciManager.getPreciByCode(code, function (credit) {
                                     console.log(parseFloat(client.credit));
-                                    console.log( parseFloat(credit));
+                                    console.log( credit);
                                     if (parseFloat(client.credit) >= parseFloat(credit)) {
                                         ClientManager.updateClientCredit(client, credit);
                                         RequestManager.createRequest('Request', client, credit);
