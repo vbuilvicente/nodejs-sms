@@ -15,11 +15,11 @@ exports.send = function (number, text) {
         message: value
     };
     var args = {
-        data: data,
+        parameters: data,
         headers: { "Content-Type": "application/json" }
 
     };
-
+  console.log("argumentos",args);
     client.registerMethod("sendSMS", "http://old.cubalan.com/sendsms.php", "GET");
     client.methods.sendSMS(args, function (data, response) {
         // parsed response body as js object
