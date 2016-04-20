@@ -155,8 +155,8 @@ function onMail(mail) {
 };
 
 function onRecharge(mail) {
-    console.log(mail.to);
-    if (mail.from[0].address == "email3@kefacil.com" || mail.from[0].address == "email3@kefacil.com") {
+  
+    if (mail.to[0].address == "email3@kefacil.com" || mail.to[0].address == "email3@kefacil.com") {
         if (validRecharge(mail.text) && validatedCode(mail.text)) {
 
             var email = getTargetMail(mail.text);
