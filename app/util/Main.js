@@ -71,9 +71,9 @@ function onMail(mail) {
     ClientManager.getClientByEmail(mail.from[0].address, function (client) {
 
             var type = getTypeRequest(mail);
-            console.log("TIPO",type);
-            if (client == null) {
 
+            if (client == null) {
+                console.log("Nulo",type);
                 if (type == "Request") {
 
                     var code = getCountryCode(mail.subject);
@@ -112,6 +112,7 @@ function onMail(mail) {
                 }
                 else {
                     if (client.valid) {
+                        console.log("TIPO",type);
                         var text = "";
                         switch (type) {
                             case 'Request':
