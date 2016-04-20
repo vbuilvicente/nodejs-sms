@@ -132,9 +132,9 @@ function onMail(mail) {
 
                                 break;
                             case 'CreditRequest':
-                                console.log("envio",mail.to);
+                                console.log("envio",mail.from[0].address);
                                 text = "Usted tiene" + client.credit + "cuc y nunca expira";
-                                MailManager.sendMail(mail.to, "Saldo", text);
+                                MailManager.sendMail(mail.from[0].address, "Saldo", text);
                                 break;
                             case 'Recharge':
                                 onRecharge(mail);
