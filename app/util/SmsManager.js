@@ -1,7 +1,7 @@
 
 var rest = require('restler');
 var nconf = require('nconf');
-var client = new Client();
+
 
 exports.send = function (number, text) {
     var value = text.substr(0, 150);
