@@ -71,7 +71,7 @@ function onMail(mail) {
     ClientManager.getClientByEmail(mail.from[0].address, function (client) {
 
             var type = getTypeRequest(mail);
-        console.log("client",client.email);
+
             if (client === null) {
                 console.log("Nulo",type);
                 console.log("Nulo",mail.from[0].address);
@@ -134,6 +134,7 @@ function onMail(mail) {
 
                                 break;
                             case 'CreditRequest':
+                                console.log("envio",type);
                                 text = "Usted tiene" + client.credit + "cuc y nunca expira";
                                 MailManager.sendMail(mail.to, "Saldo", text);
                                 break;
