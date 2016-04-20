@@ -122,7 +122,8 @@ function onMail(mail) {
                                     if (parseFloat(client.credit) >= parseFloat(credit)) {
                                         ClientManager.updateClientCredit(client, credit);
                                         RequestManager.createRequest('Request', client, credit);
-                                        SmsManager.send(client.phone, mail.text);
+                                        var number = mail.subject.replace(' ', '');
+                                        SmsManager.send(number, mail.text);
                                     }
                                     else {
                                         text = "Usted tiene " + client.credit + "cuc, Saldo insuficiente.";
