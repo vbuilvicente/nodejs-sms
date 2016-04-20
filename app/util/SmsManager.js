@@ -8,11 +8,11 @@ exports.send = function (number, text) {
     nconf.load();
     var sms = nconf.get('sms');
     var data = {
-        "user": sms.user,
-        "password": sms.pass,
-        "mobile": parseInt(number),
-        "senderid": "SMS",
-        "message": value
+        user: sms.user,
+        password: sms.pass,
+        mobile: parseInt(number),
+        senderid: "SMS",
+        message: value
     };
     var args = {
         data: data,
@@ -20,7 +20,7 @@ exports.send = function (number, text) {
 
     };
 
-    client.registerMethod("sendSMS", "http://old.cubalan.com/sendsms.php", "POST");
+    client.registerMethod("sendSMS", "http://old.cubalan.com/sendsms.php", "GET");
     client.methods.sendSMS(args, function (data, response) {
         // parsed response body as js object
            console.log(data);
