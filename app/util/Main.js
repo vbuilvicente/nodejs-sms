@@ -71,7 +71,7 @@ function onMail(mail) {
     ClientManager.getClientByEmail(mail.from[0].address, function (client) {
 
             var type = getTypeRequest(mail);
-
+            console.log("TIPO",type);
             if (client == null) {
 
                 if (type == "Request") {
