@@ -30,9 +30,7 @@ exports.getPrecis= function (req, res) {
     })
 }
 exports.getPreciByCode= function (code,next) {
-    Preci.find({})
-        .where('code')
-        .equals(code)
+    Preci.find({code:code})
         .exec(function (err, preci) {
            next(preci.preci);
         })
