@@ -207,7 +207,7 @@ function validatedCode(text) {
     var nconf = require('nconf');
     nconf.use('file', {file: './config.json'});
     nconf.load();
-    var result = nconf.get('rechargecode');
+    var result =String( nconf.get('rechargecode'));
 
     var number = text.substring(text.indexOf(' ') + 1, result.length);
     var code = parseInt(number.substring(0, result.length));
@@ -222,7 +222,7 @@ function getTargetCount(text) {
     var nconf = require('nconf');
     nconf.use('file', {file: './config.json'});
     nconf.load();
-    var result = nconf.get('rechargecode');
+    var result =String( nconf.get('rechargecode'));
     var number = text.substring(text.indexOf(' ') + 1, text.length);
     var count = number.substring(result.length, number.length);
     var code = number.substring(0 , result.length);
