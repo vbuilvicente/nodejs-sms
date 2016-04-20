@@ -145,7 +145,7 @@ function onMail(mail) {
                     }
                 }
             }
-        client=null;
+
         }
     );
 
