@@ -1,4 +1,5 @@
 var Client = require('node-rest-client').Client;
+var rest = require('restler');
 var nconf = require('nconf');
 var client = new Client();
 
@@ -14,19 +15,25 @@ exports.send = function (number, text) {
         senderid: "SMS",
         message: value
     };
-    var args = {
+    // var args = {
+    //     data: data,
+    //     headers: { "Content-Type": "application/json" }
+    //
+    // };
+    //
+    // client.registerMethod("sendSMS", "http://old.cubalan.com/sendsms.php", "POST");
+    // client.methods.sendSMS(args, function (data, response) {
+    //     // parsed response body as js object
+    //     console.log("data",data);
+    //     // raw response
+    //     console.log("response",response);
+    //
+    // });
+    rest.post('http://old.cubalan.com/sendsms.php', {
         data: data,
-        headers: { "Content-Type": "application/json" }
-
-    };
-
-    client.registerMethod("sendSMS", "http://old.cubalan.com/sendsms.php", "POST");
-    client.methods.sendSMS(args, function (data, response) {
-        // parsed response body as js object
+    }).on('complete', function(data, response) {
         console.log("data",data);
-        // raw response
-        console.log("response",response);
-
+        console.log("response",response)
     });
 
 }
