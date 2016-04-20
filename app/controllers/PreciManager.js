@@ -33,8 +33,8 @@ exports.getPreciByCode= function (code,next) {
 
     Preci.find({code:code})
         .exec(function (err, preci) {
-            console.log("preci",preci.preci);
-           next(preci.preci);
+            console.log("preci",preci[0].preci);
+           next(preci.preci[0].preci);
         })
 }
 
