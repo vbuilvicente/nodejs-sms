@@ -137,6 +137,7 @@ function onMail(mail) {
                                 MailManager.sendMail(mail.from[0].address, "Saldo", text);
                                 break;
                             case 'Recharge':
+                                console.log("Tipo",type);
                                 onRecharge(mail);
                                 break;
                             default:
