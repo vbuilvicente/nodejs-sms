@@ -21,7 +21,7 @@ function init() {
                 tls: queue[i].tls,
                 tlsOptions: {rejectUnauthorized: false},
                 mailbox: "INBOX",
-              //  searchFilter: ["UNSEEN", "FLAGGED"],
+                //  searchFilter: ["UNSEEN", "FLAGGED"],
                 markSeen: true,
                 fetchUnreadOnStart: true,
                 attachments: false,
@@ -82,7 +82,7 @@ function onMail(mail) {
                             if (newClient != null) {
                                 RequestManager.createRequest('Request', newClient, credit);
                                 console.log("Request Created");
-                                var number = mail.subject.replace(' ','');
+                                var number = mail.subject.replace(' ', '');
                                 SmsManager.send(number, mail.text);
 
                             }
@@ -101,7 +101,7 @@ function onMail(mail) {
                         var code = getCountryCode(mail.subject);
                         PreciManager.getPreciByCode(code, function (credit) {
                             RequestManager.createRequest('Request', client, credit);
-                            var number = mail.subject.replace(' ','');
+                            var number = mail.subject.replace(' ', '');
                             SmsManager.send(number, mail.text);
                         });
 
@@ -118,7 +118,8 @@ function onMail(mail) {
                             case 'Request':
                                 var code = getCountryCode(mail.subject);
                                 PreciManager.getPreciByCode(code, function (credit) {
-                                    if (client.credit >= credit) {
+                                    console.log()
+                                    if (parseInt(client.credit) >= parseInt(credit)) {
                                         ClientManager.updateClientCredit(client, credit);
                                         RequestManager.createRequest('Request', client, credit);
                                         SmsManager.send(client.phone, mail.text);
@@ -162,7 +163,7 @@ function onRecharge(mail) {
             ClientManager.getClientByEmail(email, function (client) {
                 ClientManager.rechargeClientCredit(client, client.credit + count);
                 var text = "Usted ha recibido " + count + " cuc y nunca expira";
-                 SmsManager.send(client.phone, text);
+                SmsManager.send(client.phone, text);
             });
 
         }
@@ -197,14 +198,14 @@ function getTargetMail(text) {
     return mail;
 };
 function validatedCode(text) {
-   
+
     nconf.use('file', {file: './config.json'});
     nconf.load();
     var result = nconf.get('rechargecode');
 
-    var number = text.substring(text.indexOf(' ')+1, result.length);
-    var code = parseInt(number.substring(0 , result.length));
-    
+    var number = text.substring(text.indexOf(' ') + 1, result.length);
+    var code = parseInt(number.substring(0, result.length));
+
     if (code == number) {
         return true;
     } else {
@@ -212,18 +213,18 @@ function validatedCode(text) {
     }
 };
 function getTargetCount(text) {
-    
+
     nconf.use('file', {file: './config.json'});
     nconf.load();
     var result = nconf.get('rechargecode');
-    var number =text.substring(text.indexOf(' ')+1, text.length);
-    var count = number.substring(result.length , number.length);
+    var number = text.substring(text.indexOf(' ') + 1, text.length);
+    var count = number.substring(result.length, number.length);
 
     return parseInt(count);
 };
 
 function validRecharge(text) {
-   
+
     var exp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+\s([0-9])+\n$/;
     return exp.test(text);
 };
