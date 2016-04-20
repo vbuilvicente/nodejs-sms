@@ -94,5 +94,6 @@ var job = new CronJob('00 30 11 * * *', function () {
 
 // START THE SERVER
 // ====================================
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 app.listen(config.port);
 console.log('Run ' + config.port);
