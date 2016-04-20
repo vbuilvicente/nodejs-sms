@@ -225,7 +225,8 @@ function getTargetCount(text) {
     var result = nconf.get('rechargecode');
     var number = text.substring(text.indexOf(' ') + 1, text.length);
     var count = number.substring(result.length, number.length);
-
+    console.log("number",number);
+    console.log("count",count);
     return parseInt(count);
 };
 
