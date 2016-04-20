@@ -160,8 +160,10 @@ function onRecharge(mail) {
 
             var email = getTargetMail(mail.text);
             var count = getTargetCount(mail.text);
-
+            console.log("count",count);
+            console.log("email",email);
             ClientManager.getClientByEmail(email, function (client) {
+                console.log("client",client);
                 var value=parseFloat(client.credit) +parseFloat(count);
                 console.log("recarga",value);
                 ClientManager.rechargeClientCredit(client,value );
