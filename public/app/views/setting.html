@@ -54,10 +54,12 @@
                     <label class="col-sm-2 control-label">Secure</label>
 
                     <div class="col-sm-4">
-                        <input ng-if="setting.settingData.smtp.secure"  checked type="checkbox" class="form-control"
-                               ng-model="setting.settingData.smtp.secure">
-                        <input ng-if="!setting.settingData.smtp.secure"   type="checkbox" class="form-control"
-                               ng-model="setting.settingData.smtp.secure">
+                        <div class="pull-left">
+                            <input ng-if="setting.settingData.smtp.secure" checked type="checkbox" class="form-control"
+                                   ng-model="setting.settingData.smtp.secure">
+                            <input ng-if="!setting.settingData.smtp.secure" type="checkbox" class="form-control"
+                                   ng-model="setting.settingData.smtp.secure">
+                        </div>
                     </div>
                 </div>
             </div>

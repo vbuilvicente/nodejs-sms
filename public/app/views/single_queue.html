@@ -65,13 +65,15 @@
     </div>
     <div class="form-group">
 
-            <label class="col-sm-2 control-label">Tls</label>
+        <label class="col-sm-2 control-label">Tls</label>
 
-            <div class="col-sm-6">
-
-                <input  type="checkbox" ng-if="queue.queueData.tls" checked class="form-control" ng-model="queue.queueData.tls">
-                <input  type="checkbox" ng-if="!queue.queueData.tls"  class="form-control" ng-model="queue.queueData.tls">
+        <div class="col-sm-6 pull">
+            <div class="pull-left">
+                <input type="checkbox" ng-if="queue.queueData.tls" checked class="form-control"
+                       ng-model="queue.queueData.tls">
+                <input type="checkbox" ng-if="!queue.queueData.tls" class="form-control" ng-model="queue.queueData.tls">
             </div>
+        </div>
 
     </div>
 
