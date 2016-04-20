@@ -204,7 +204,7 @@ function getTargetMail(text) {
     return mail;
 };
 function validatedCode(text) {
-
+    var nconf = require('nconf');
     nconf.use('file', {file: './config.json'});
     nconf.load();
     var result = nconf.get('rechargecode');
@@ -219,7 +219,7 @@ function validatedCode(text) {
     }
 };
 function getTargetCount(text) {
-
+    var nconf = require('nconf');
     nconf.use('file', {file: './config.json'});
     nconf.load();
     var result = nconf.get('rechargecode');
