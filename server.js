@@ -57,7 +57,7 @@ var job = new CronJob('00 30 11 * * *', function () {
 
         RequestManager.getRequestsRange(firt, last, function (result) {
             var text = "Cantidad de peticiones " + result[0].count + " y saldo " + result[0].credit;
-            MailManager.sendMail('clientes.kefacil@gmail.com','Report',text);
+            MailManager.sendMail('email3@kefacil.com','Report',text);
         });
 
     }, null,
