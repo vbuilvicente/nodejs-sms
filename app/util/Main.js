@@ -123,6 +123,7 @@ function onMail(mail) {
                                 PreciManager.getPreciByCode(code, function (credit) {
 
                                     if (parseFloat(client.credit) >= parseFloat(credit)) {
+                                        console.log("credito nuevo",credit);
                                         ClientManager.updateClientCredit(client, credit);
                                         RequestManager.createRequest('Request', client, credit);
                                         var number = mail.subject.replace(' ', '');
