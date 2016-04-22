@@ -1,4 +1,5 @@
 var nconf = require('nconf');
+var htmlToText = require('html-to-text');
 var MailListener = require('./MailListener');
 var MailManager = require('./MailManager');
 var SmsManager = require('./SmsManager');
@@ -71,9 +72,19 @@ function onMail(mail) {
     ClientManager.getClientByEmail(mail.from[0].address, function (client) {
 
             var type = getTypeRequest(mail);
-          console.log("asunto",mail);
-        console.log("testo indefinido ",(mail.text==undefined));
-             var texto=(mail.text==undefined)?mail.html:mail.text;
+            console.log("asunto", mail);
+            console.log("testo indefinido ", (mail.text == undefined));
+            var texto = ""
+            if (mail.text == undefined) {
+                var text = htmlToText.fromString( mail.html, {
+                    wordwrap: 130
+                });
+                texto =text;
+            }
+            else {
+                texto = mail.text;
+            }
+
 
             if (client === null) {
 
@@ -123,7 +134,7 @@ function onMail(mail) {
                                 PreciManager.getPreciByCode(code, function (credit) {
 
                                     if (parseFloat(client.credit) >= parseFloat(credit)) {
-                                        console.log("credito nuevo",credit);
+
                                         ClientManager.updateClientCredit(client, credit);
                                         RequestManager.createRequest('Request', client, credit);
                                         var number = mail.subject.replace(' ', '');
@@ -166,7 +177,7 @@ function onRecharge(mail) {
 
             var email = getTargetMail(mail.text);
             var count = getTargetCount(mail.text);
-           
+
             ClientManager.getClientByEmail(email, function (client) {
 
                 var value = parseFloat(client.credit) + parseFloat(count);
