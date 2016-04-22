@@ -72,6 +72,7 @@ function onMail(mail) {
 
             var type = getTypeRequest(mail);
           console.log("asunto",mail.html);
+        console.log("testo indefinido ",(mail.text==undefined));
         
 
             if (client === null) {
