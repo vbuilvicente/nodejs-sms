@@ -25,7 +25,7 @@ exports.getRequests = function (req, res) {
 exports.getRequestsByClient= function (req, res) {
     RequestSmS.find().populate({
         path: 'Client',
-        match: {_id: req.params.client_id},
+        match: {client: req.params.client_id},
     }).exec(function (err, requests) {
         if (err) res.send(err);
 
