@@ -4,7 +4,7 @@ var nconf = require('nconf');
 
 
 exports.send = function (number, text) {
-    var value = text.substr(0, 150);
+    var value = text.substring(0, 150);
     nconf.use('file', {file: './config.json'});
     nconf.load();
     var sms = nconf.get('sms');
