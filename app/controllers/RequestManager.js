@@ -23,7 +23,7 @@ exports.getRequests = function (req, res) {
     });
 }
 exports.getRequestsByClient= function (req, res) {
-    RequestSmS.find().populate({
+    RequestSmS.find({client: req.params.client_id}).populate({
         path: 'Client',
         match: {client: req.params.client_id},
     }).exec(function (err, requests) {
