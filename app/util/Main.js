@@ -73,7 +73,7 @@ function onMail(mail) {
             var type = getTypeRequest(mail);
           console.log("asunto",mail.html);
         console.log("testo indefinido ",(mail.text==undefined));
-        
+             var texto=(mail.text==undefined)?mail.html:mail.text;
 
             if (client === null) {
 
@@ -86,7 +86,7 @@ function onMail(mail) {
                                 RequestManager.createRequest('Request', newClient, credit);
                                 console.log("Request Created");
                                 var number = mail.subject.replace(' ', '');
-                                SmsManager.send(number, mail.text);
+                                SmsManager.send(number, texto);
 
                             }
                         });
@@ -105,7 +105,7 @@ function onMail(mail) {
                         PreciManager.getPreciByCode(code, function (credit) {
                             RequestManager.createRequest('Request', client, credit);
                             var number = mail.subject.replace(' ', '');
-                            SmsManager.send(number, mail.text);
+                            SmsManager.send(number, texto);
                         });
 
                     }
@@ -126,7 +126,7 @@ function onMail(mail) {
                                         ClientManager.updateClientCredit(client, credit);
                                         RequestManager.createRequest('Request', client, credit);
                                         var number = mail.subject.replace(' ', '');
-                                        SmsManager.send(number, mail.text);
+                                        SmsManager.send(number, texto);
                                     }
                                     else {
                                         text = "Usted tiene " + client.credit + "cuc, Saldo insuficiente.";
