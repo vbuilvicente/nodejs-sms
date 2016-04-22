@@ -72,7 +72,7 @@ function onMail(mail) {
 
             var type = getTypeRequest(mail);
           console.log("asunto",mail.subject);
-         console.log("texto",mail.text);
+        
 
             if (client === null) {
 
