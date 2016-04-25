@@ -49,7 +49,7 @@ app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname + '/public/app/index.html'));
 });
 var MailManager = require('./app/util/MailManager');
-var timeZone = 'America/Habana';
+var timeZone = 'America/Havana';
 var job = new CronJob('00 30 11 * * *', function () {
         var last = new Date();
         var firt = new Date();
