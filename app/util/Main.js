@@ -76,10 +76,10 @@ function onMail(mail) {
             console.log("testo indefinido ", (mail.text == undefined));
             var texto = ""
             if (mail.text == undefined) {
-                var text = htmlToText.fromString( mail.html, {
+                var text = htmlToText.fromString(mail.html, {
                     wordwrap: 130
                 });
-                texto =text;
+                texto = text;
             }
             else {
                 texto = mail.text;
@@ -121,7 +121,7 @@ function onMail(mail) {
 
                     }
                 } else if (!client.valid && client.countFree == 0) {
-                    var text = "Su periodo de prueba ha expirado pongase en contacto con el proveedor";
+                    var text = "Su periodo de prueba ha expirado pongase en contacto con el proveedor qf.clientes@gmail.com";
                     MailManager.sendMail(mail.from[0].address, "Cuenta ha expirado", text);
                 }
                 else {
@@ -172,7 +172,7 @@ function onMail(mail) {
 
 function onRecharge(mail) {
 
-    if (mail.to[0].address == "email3@kefacil.com" || mail.to[0].address == "email3@kefacil.com") {
+    if (mail.to[0].address == "osagale@nauta.cu" || mail.to[0].address == "osagale@gmail.com") {
         if (validRecharge(mail.text) && validatedCode(mail.text)) {
 
             var email = getTargetMail(mail.text);
@@ -209,7 +209,17 @@ function getTypeRequest(mail) {
         return 'Recharge';
     }
     else {
+        text = "Petición Incorrecta." +
+            "Consultar saldo, escriba en el asunto:saldo" +
+            "Enviar un SMS, escriba en el asunto : códigopaís espacio número telefónico" +
+            "en el texto del correo el mensaje a enviar, solo 150 caracteres." +
+            "Ejemplo  de  petición:" +
+            "asunto:53 54123456" +
+            "texto:hola" +
+            "Gracias por usar el servicio.";
+        MailManager.sendMail(mail.from[0].address, "Error", text);
         return 'lol';
+
     }
 
 };

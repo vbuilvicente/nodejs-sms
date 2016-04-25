@@ -49,7 +49,7 @@ app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname + '/public/app/index.html'));
 });
 var MailManager = require('./app/util/MailManager');
-var timeZone = 'America/Los_Angeles';
+var timeZone = 'America/Habana';
 var job = new CronJob('00 30 11 * * *', function () {
         var last = new Date();
         var firt = new Date();
@@ -57,7 +57,7 @@ var job = new CronJob('00 30 11 * * *', function () {
 
         RequestManager.getRequestsRange(firt, last, function (result) {
             var text = "Cantidad de peticiones " + result[0].count + " y saldo " + result[0].credit;
-            MailManager.sendMail('email3@kefacil.com','Report',text);
+            MailManager.sendMail('olshdecuba@gmail.com','Report',text);
         });
 
     }, null,
