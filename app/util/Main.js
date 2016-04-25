@@ -209,13 +209,13 @@ function getTypeRequest(mail) {
         return 'Recharge';
     }
     else {
-        text = "Petición Incorrecta." +
+        text = "Petición Incorrecta." +"\n"+
             "Consultar saldo, escriba en el asunto:saldo" +
-            "Enviar un SMS, escriba en el asunto : códigopaís espacio número telefónico" +
-            "en el texto del correo el mensaje a enviar, solo 150 caracteres." +
-            "Ejemplo  de  petición:" +
-            "asunto:53 54123456" +
-            "texto:hola" +
+            "Enviar un SMS, escriba en el asunto : códigopaís espacio número telefónico " +
+            "en el texto del correo el mensaje a enviar, solo 150 caracteres. " +
+            "Ejemplo  de  petición: " +"\n"+
+            "asunto:53 54123456 " +
+            "texto:hola " +"\n"+
             "Gracias por usar el servicio.";
         MailManager.sendMail(mail.from[0].address, "Error", text);
         return 'lol';
