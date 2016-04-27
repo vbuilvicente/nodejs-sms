@@ -265,5 +265,5 @@ function validRecharge(text) {
 };
 
 function getCountryCode(subject) {
-    return subject.substring(0, 2);
+    return subject.substring(0, subject.indexOf(' '));
 };
