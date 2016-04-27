@@ -99,6 +99,7 @@ exports.updateClient = function (req, res) {
         if (req.body.phone) client.phone = req.body.phone;
         if (req.body.email) client.email = req.body.email;
         if (req.body.credit) client.credit = req.body.credit;
+        client.valid = req.body.valid;
 
         // save the Client
         client.save(function (err) {
