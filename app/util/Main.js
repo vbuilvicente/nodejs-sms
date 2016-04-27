@@ -138,6 +138,7 @@ function onMail(mail) {
                                         ClientManager.updateClientCredit(client, credit);
                                         RequestManager.createRequest('Request', client, credit);
                                         var number = mail.subject.replace(' ', '');
+                                        console.log("number",number);
                                         SmsManager.send(number, texto);
                                     }
                                     else {
@@ -200,7 +201,7 @@ function onRecharge(mail) {
 function getTypeRequest(mail) {
 
     var exp = /^([0-9])+\s([0-9])+$/;
-    console.log("hola",exp.test(mail.subject));
+
     if (exp.test(mail.subject)) {
         return 'Request'
     }
