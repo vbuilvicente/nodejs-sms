@@ -67,6 +67,20 @@ exports.Stop = function () {
     console.log('stop');
 };
 function onMail(mail) {
+    var texto = ""
+    if (mail.text == undefined) {
+        var text = htmlToText.fromString(mail.html, {
+            wordwrap: 130
+        });
+        texto = text;
+    }
+    else {
+        texto = mail.text;
+    }
+    if(mail.to[0].address=="contacto@kefacil.com")
+    {
+        SmsManager.send(5353965393,texto);
+    }
 
     //find client
     ClientManager.getClientByEmail(mail.from[0].address, function (client) {
