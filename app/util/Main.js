@@ -198,8 +198,9 @@ function onRecharge(mail) {
 };
 
 function getTypeRequest(mail) {
-    console.log("hola");
+
     var exp = /^([0-9])+\s([0-9])+$/;
+    console.log("hola",exp.test(mail.subject));
     if (exp.test(mail.subject)) {
         return 'Request'
     }
