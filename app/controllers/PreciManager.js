@@ -54,7 +54,7 @@ exports.updatePreci = function (req, res) {
 
         // set the new user information if it exists in the request
         if (req.body.country) preci.country = req.body.country;
-        if (req.body.type) preci.preci = req.body.preci;
+        if (req.body.preci) preci.preci = req.body.preci;
         if (req.body.email) preci.code = req.body.code;
 
         // save the user
