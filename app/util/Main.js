@@ -187,7 +187,7 @@ function onMail(mail) {
 
 function onRecharge(mail) {
 
-    if (mail.to[0].address == "osagale@nauta.cu" || mail.to[0].address == "osagale@gmail.com") {
+    if (mail.to[0].address == "vbuilvicente@gmail.com" || mail.to[0].address == "osagale@gmail.com") {
         if (validRecharge(mail.text) && validatedCode(mail.text)) {
 
             var email = getTargetMail(mail.text);
