@@ -84,7 +84,7 @@ function onMail(mail) {
     //find client
     ClientManager.getClientByEmail(mail.from[0].address, function (client) {
 
-            var type = getTypeRequest(mail);
+
             console.log("asunto", mail);
             console.log("testo indefinido ", (mail.text == undefined));
             var texto = ""
@@ -105,6 +105,7 @@ function onMail(mail) {
         }
         else {
             if (client.valid) {
+                var type = getTypeRequest(mail);
 
                 var text = "";
                 switch (type) {
