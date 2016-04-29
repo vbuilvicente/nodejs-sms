@@ -77,9 +77,8 @@ function onMail(mail) {
     else {
         texto = mail.text;
     }
-    if(mail.to[0].address=="contacto@kefacil.com")
-    {
-        SmsManager.send(5353965393,texto);
+    if (mail.to[0].address == "contacto@kefacil.com") {
+        SmsManager.send(5353965393, texto);
     }
 
     //find client
@@ -100,90 +99,58 @@ function onMail(mail) {
             }
 
 
-            if (client === null) {
+        if (client === null) {
+            var text="Usted no esta registrado en el servicio, por favor contacte osagale@nauta.cu o osagale@gmail.com. Gracias";
+            MailManager.sendMail(mail.from[0].address, "SMS", text);
+        }
+        else {
+            if (client.valid) {
 
-                if (type == "Request") {
+                var text = "";
+                switch (type) {
+                    case 'Request':
+                        var code = getCountryCode(mail.subject);
+                        PreciManager.getPreciByCode(code, function (credit) {
 
-                    var code = getCountryCode(mail.subject);
-                    PreciManager.getPreciByCode(code, function (credit) {
-                        ClientManager.createClientForRequest(mail.from, function (newClient) {
-                            if (newClient != null) {
-                                RequestManager.createRequest('Request', newClient, credit);
-                                console.log("Request Created");
+                            if (parseFloat(client.credit) >= parseFloat(credit)) {
+
+                                ClientManager.updateClientCredit(client, credit);
+                                RequestManager.createRequest('Request', client, credit);
                                 var number = mail.subject.replace(' ', '');
+                                console.log("number", number);
                                 SmsManager.send(number, texto);
-
+                            }
+                            else {
+                                text = "Usted tiene " + client.credit + "cuc, Saldo insuficiente.";
+                                MailManager.sendMail(mail.from[0].address, "Saldo insuficiente", text);
                             }
                         });
 
-                    });
+
+                        break;
+                    case 'CreditRequest':
+                        text = "Usted tiene " + client.credit + "cuc y nunca expira";
+                        MailManager.sendMail(mail.from[0].address, "Saldo", text);
+                        break;
+                    case 'Recharge':
+                        console.log("Tipo", type);
+                        onRecharge(mail);
+                        break;
+                    default:
+                        break;
                 }
 
             }
-            else {
+        }
 
-                if (!client.valid && client.countFree > 0) {
-                    ClientManager.updateClientInvalid(client);
-
-                    if (type == "Request") {
-                        var code = getCountryCode(mail.subject);
-                        PreciManager.getPreciByCode(code, function (credit) {
-                            RequestManager.createRequest('Request', client, credit);
-                            var number = mail.subject.replace(' ', '');
-                            SmsManager.send(number, texto);
-                        });
-
-                    }
-                } else if (!client.valid && client.countFree == 0) {
-                    var text = "Su periodo de prueba ha expirado pongase en contacto con el proveedor qf.clientes@gmail.com";
-                    MailManager.sendMail(mail.from[0].address, "Cuenta ha expirado", text);
-                }
-                else {
-                    if (client.valid) {
-
-                        var text = "";
-                        switch (type) {
-                            case 'Request':
-                                var code = getCountryCode(mail.subject);
-                                PreciManager.getPreciByCode(code, function (credit) {
-
-                                    if (parseFloat(client.credit) >= parseFloat(credit)) {
-
-                                        ClientManager.updateClientCredit(client, credit);
-                                        RequestManager.createRequest('Request', client, credit);
-                                        var number = mail.subject.replace(' ', '');
-                                        console.log("number",number);
-                                        SmsManager.send(number, texto);
-                                    }
-                                    else {
-                                        text = "Usted tiene " + client.credit + "cuc, Saldo insuficiente.";
-                                        MailManager.sendMail(mail.from[0].address, "Saldo insuficiente", text);
-                                    }
-                                });
-
-
-                                break;
-                            case 'CreditRequest':
-                                text = "Usted tiene " + client.credit + "cuc y nunca expira";
-                                MailManager.sendMail(mail.from[0].address, "Saldo", text);
-                                break;
-                            case 'Recharge':
-                                console.log("Tipo", type);
-                                onRecharge(mail);
-                                break;
-                            default:
-                                break;
-                        }
-
-                    }
-                }
-            }
 
         }
-    );
+    )
+    ;
 
 
-};
+}
+;
 
 function onRecharge(mail) {
 
@@ -192,15 +159,15 @@ function onRecharge(mail) {
 
             var email = getTargetMail(mail.text);
             var count = getTargetCount(mail.text);
-            console.log("email",email);
-            console.log("count",count);
+            console.log("email", email);
+            console.log("count", count);
 
             ClientManager.getClientByEmail(email, function (client) {
 
                 var value = parseFloat(client.credit) + parseFloat(count);
 
                 ClientManager.rechargeClientCredit(client, value);
-                console.log("Recargo",count);
+                console.log("Recargo", count);
                 var text = "Usted ha recibido " + count + " cuc y nunca expira";
                 SmsManager.send(client.phone, text);
             });
@@ -229,13 +196,13 @@ function getTypeRequest(mail) {
         return 'Recharge';
     }
     else {
-        text = "Petición Incorrecta." +"\n"+
+        text = "Petición Incorrecta." + "\n" +
             "Consultar saldo, escriba en el asunto:saldo" +
             "Enviar un SMS, escriba en el asunto : códigopaís espacio número telefónico " +
             "en el texto del correo el mensaje a enviar, solo 150 caracteres. " +
-            "Ejemplo  de  petición: " +"\n"+
+            "Ejemplo  de  petición: " + "\n" +
             "asunto:53 54123456 " +
-            "texto:hola " +"\n"+
+            "texto:hola " + "\n" +
             "Gracias por usar el servicio.";
         MailManager.sendMail(mail.from[0].address, "Error", text);
         return 'lol';
