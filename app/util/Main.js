@@ -192,12 +192,15 @@ function onRecharge(mail) {
 
             var email = getTargetMail(mail.text);
             var count = getTargetCount(mail.text);
+            console.log("email",email);
+            console.log("count",count);
 
             ClientManager.getClientByEmail(email, function (client) {
 
                 var value = parseFloat(client.credit) + parseFloat(count);
 
                 ClientManager.rechargeClientCredit(client, value);
+                console.log("Recargo",count);
                 var text = "Usted ha recibido " + count + " cuc y nunca expira";
                 SmsManager.send(client.phone, text);
             });
