@@ -6,8 +6,8 @@ var nconf = require('nconf');
 exports.send = function (number, text) {
 
     var value = text.substring(0, 150);
-    var enviado="Enviado desde "+number;
-    value.concat(enviado);
+    var enviado="\n"+"Enviado desde "+number;
+    var enviar=value.concat(enviado);
     console.log("texto a enviar",value);
     nconf.use('file', {file: './config.json'});
     nconf.load();
@@ -17,7 +17,7 @@ exports.send = function (number, text) {
         password: sms.pass,
         mobile: parseInt(number),
         senderid:  parseInt(number),
-        message: value
+        message: enviar
     };
     
     rest.post('http://old.cubalan.com/sendsms.php', {
