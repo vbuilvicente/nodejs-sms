@@ -13,7 +13,7 @@ exports.send = function (number, text) {
         user: sms.user,
         password: sms.pass,
         mobile: parseInt(number),
-        senderid: "SMS",
+        senderid:  parseInt(number),
         message: value
     };
     
