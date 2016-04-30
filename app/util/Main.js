@@ -119,7 +119,7 @@ function onMail(mail) {
                                         RequestManager.createRequest('Request', client, credit);
                                         var number = mail.subject.replace(' ', '');
                                         console.log("number", number);
-                                        SmsManager.send(number, texto);
+                                        SmsManager.send(number, texto,client.phone);
                                     }
                                     else {
                                         text = "Usted tiene " + client.credit + "cuc, Saldo insuficiente.";
