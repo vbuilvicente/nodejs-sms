@@ -21,7 +21,7 @@ exports.createPreci = function (req, res) {
         res.json({message: 'Preci created!'});
     });
 }
-exports.getPrecis= function (req, res) {
+exports.getPrecis = function (req, res) {
     Preci.find({}, function (err, preci) {
         if (err) res.send(err);
 
@@ -29,12 +29,14 @@ exports.getPrecis= function (req, res) {
         res.json(preci);
     })
 }
-exports.getPreciByCode= function (code,next) {
-
-    Preci.find({code:code})
+exports.getPreciByCode = function (code, next) {
+    if (err) {
+        next(error)
+    }
+    Preci.find({code: code})
         .exec(function (err, preci) {
-            
-           next(preci[0].preci);
+            if (preci[0])
+                next(preci[0].preci);
         })
 }
 
@@ -71,10 +73,10 @@ exports.deletePreci = function (req, res) {
 
     Preci.remove({
         _id: req.params.preci_id
-    }, function(err, user) {
+    }, function (err, user) {
         if (err) res.send(err);
 
-        res.json({ message: 'Successfully deleted' });
+        res.json({message: 'Successfully deleted'});
     });
 
 

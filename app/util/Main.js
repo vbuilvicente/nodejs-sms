@@ -99,50 +99,51 @@ function onMail(mail) {
             }
 
 
-        if (client === null) {
-            var text="Usted no esta registrado en el servicio, por favor contacte osagale@nauta.cu o osagale@gmail.com. Gracias";
-            MailManager.sendMail(mail.from[0].address, "SMS", text);
-        }
-        else {
-            if (client.valid) {
-                var type = getTypeRequest(mail);
-
-                var text = "";
-                switch (type) {
-                    case 'Request':
-                        var code = getCountryCode(mail.subject);
-                        PreciManager.getPreciByCode(code, function (credit) {
-
-                            if (parseFloat(client.credit) >= parseFloat(credit)) {
-
-                                ClientManager.updateClientCredit(client, credit);
-                                RequestManager.createRequest('Request', client, credit);
-                                var number = mail.subject.replace(' ', '');
-                                console.log("number", number);
-                                SmsManager.send(number, texto);
-                            }
-                            else {
-                                text = "Usted tiene " + client.credit + "cuc, Saldo insuficiente.";
-                                MailManager.sendMail(mail.from[0].address, "Saldo insuficiente", text);
-                            }
-                        });
-
-
-                        break;
-                    case 'CreditRequest':
-                        text = "Usted tiene " + client.credit + "cuc y nunca expira";
-                        MailManager.sendMail(mail.from[0].address, "Saldo", text);
-                        break;
-                    case 'Recharge':
-                      
-                        onRecharge(mail);
-                        break;
-                    default:
-                        break;
-                }
-
+            if (client === null) {
+                var text = "Usted no esta registrado en el servicio, por favor contacte osagale@nauta.cu o osagale@gmail.com. Gracias";
+                MailManager.sendMail(mail.from[0].address, "SMS", text);
             }
-        }
+            else {
+                if (client.valid) {
+                    var type = getTypeRequest(mail);
+
+                    var text = "";
+                    switch (type) {
+                        case 'Request':
+                            var code = getCountryCode(mail.subject);
+                            PreciManager.getPreciByCode(code, function (credit) {
+                                if (credit) {
+                                    if (parseFloat(client.credit) >= parseFloat(credit)) {
+
+                                        ClientManager.updateClientCredit(client, credit);
+                                        RequestManager.createRequest('Request', client, credit);
+                                        var number = mail.subject.replace(' ', '');
+                                        console.log("number", number);
+                                        SmsManager.send(number, texto);
+                                    }
+                                    else {
+                                        text = "Usted tiene " + client.credit + "cuc, Saldo insuficiente.";
+                                        MailManager.sendMail(mail.from[0].address, "Saldo insuficiente", text);
+                                    }
+                                }
+                            });
+
+
+                            break;
+                        case 'CreditRequest':
+                            text = "Usted tiene " + client.credit + "cuc y nunca expira";
+                            MailManager.sendMail(mail.from[0].address, "Saldo", text);
+                            break;
+                        case 'Recharge':
+
+                            onRecharge(mail);
+                            break;
+                        default:
+                            break;
+                    }
+
+                }
+            }
 
 
         }
