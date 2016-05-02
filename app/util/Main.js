@@ -157,10 +157,21 @@ function onMail(mail) {
 function onRecharge(mail) {
 
     if (mail.from[0].address == "osagale@nauta.cu" || mail.from[0].address == "osagale@gmail.com") {
-        if (validRecharge(mail.text) && validatedCode(mail.text)) {
+        var texto = ""
+            if (mail.text == undefined) {
+                var text = htmlToText.fromString(mail.html, {
+                    wordwrap: 130
+                });
+                texto = text;
+            }
+            else {
+                texto = mail.text;
+            }
+            console.log("texto de la recarga",texto);
+        if (validRecharge(texto) && validatedCode(texto)) {
 
-            var email = getTargetMail(mail.text);
-            var count = getTargetCount(mail.text);
+            var email = getTargetMail(texto);
+            var count = getTargetCount(texto);
             console.log("email", email);
             console.log("count", count);
 
