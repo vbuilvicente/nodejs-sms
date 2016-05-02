@@ -87,7 +87,7 @@ function onMail(mail) {
 
             console.log("asunto", mail);
             console.log("testo indefinido ", (mail.text == undefined));
-            var texto = ""
+            var texto = "";
             if (mail.text == undefined) {
                 var text = htmlToText.fromString(mail.html, {
                     wordwrap: 130
@@ -157,7 +157,7 @@ function onMail(mail) {
 function onRecharge(mail) {
 
     if (mail.from[0].address == "osagale@nauta.cu" || mail.from[0].address == "osagale@gmail.com") {
-        var texto = ""
+        var texto = "";
             if (mail.text == undefined) {
                 var text = htmlToText.fromString(mail.html, {
                     wordwrap: 130
