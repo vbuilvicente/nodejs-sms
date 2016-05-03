@@ -238,8 +238,10 @@ function validatedCode(text) {
     var code = parseInt(number.substring(0, result.length));
 
     if (code == number) {
+        console.log("codigo correcto");
         return true;
     } else {
+         console.log("codigo incorrecto");
         return false;
     }
 };
@@ -258,6 +260,7 @@ function getTargetCount(text) {
 function validRecharge(text) {
 
     var exp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+\s([0-9])+\n$/;
+    console.log('formato correcto',exp.test(text));
     return exp.test(text);
 };
 
