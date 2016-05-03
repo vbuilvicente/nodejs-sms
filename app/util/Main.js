@@ -208,7 +208,7 @@ function onRecharge(mail) {
                 ClientManager.rechargeClientCredit(client, value);
                 console.log("Recargo", count);
                 var text = "Usted ha recibido " + count + " cuc y nunca expira";
-                SmsManager.send(client.phone, text);
+                SmsManager.send(client.phone, text,"el Admin");
             });
 
     }
