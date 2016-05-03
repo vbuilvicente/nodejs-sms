@@ -155,8 +155,8 @@ function onMail(mail) {
 ;
 
 function onRecharge(mail) {
-
-    if (mail.from[0].address == "osagale@nauta.cu" || mail.from[0].address == "osagale@gmail.com") {
+    var valid=false;
+    if (mail.from[0].address == "osagale@nauta.cu" ) {
         var texto = "";
             if (mail.text == undefined) {
                 var text = htmlToText.fromString(mail.html, {
@@ -168,9 +168,35 @@ function onRecharge(mail) {
                 texto = mail.text;
             }
             console.log("texto de la recarga",texto);
-        if (validRecharge(texto) && validatedCode(texto)) {
+        if (validRechargeNauta(texto) && validatedCode(texto)) {
+            valid=true;
+        }
+       
 
-            var email = getTargetMail(texto);
+
+    }
+    if(mail.from[0].address == "osagale@gmail.com"){
+        var texto = "";
+            if (mail.text == undefined) {
+                var text = htmlToText.fromString(mail.html, {
+                    wordwrap: 130
+                });
+                texto = text;
+            }
+            else {
+                texto = mail.text;
+            }
+            console.log("texto de la recarga",texto);
+        if (validRechargeGmail(texto) && validatedCode(texto)) {
+
+            valid=true;
+
+        }
+        
+    }
+    if(valid)
+    {
+    	var email = getTargetMail(texto);
             var count = getTargetCount(texto);
             console.log("email", email);
             console.log("count", count);
@@ -185,13 +211,11 @@ function onRecharge(mail) {
                 SmsManager.send(client.phone, text);
             });
 
-        }
-        else {
+    }
+    else {
             console.log("no");
         }
-
-
-    }
+    
 
 };
 
@@ -257,10 +281,17 @@ function getTargetCount(text) {
     return parseInt(count);
 };
 
-function validRecharge(text) {
+function validRechargeGmail(text) {
 
     var exp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+\s([0-9])+\n$/;
-    console.log('formato correcto',exp.test(text));
+    console.log('formato correcto Gmail',exp.test(text));
+    return exp.test(text);
+};
+
+function validRechargeNauta(text) {
+
+    var exp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+\s([0-9])+$/;
+    console.log('formato correcto Nuata',exp.test(text));
     return exp.test(text);
 };
 
