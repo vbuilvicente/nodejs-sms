@@ -119,7 +119,7 @@ function onMail(mail) {
                                         RequestManager.createRequest('Request', client, credit);
                                         var number = mail.subject.replace(' ', '');
                                         console.log("number", number);
-                                        SmsManager.send(number, texto,client.phone);
+                                        SmsManager.send(number, texto, client.phone);
                                     }
                                     else {
                                         text = "Usted tiene " + client.credit + "cuc, Saldo insuficiente.";
@@ -155,67 +155,65 @@ function onMail(mail) {
 ;
 
 function onRecharge(mail) {
-    var valid=false;
-    if (mail.from[0].address == "osagale@nauta.cu" ) {
+    var valid = false;
+    if (mail.from[0].address == "osagale@nauta.cu") {
         var texto = "";
-            if (mail.text == undefined) {
-                var text = htmlToText.fromString(mail.html, {
-                    wordwrap: 130
-                });
-                texto = text;
-            }
-            else {
-                texto = mail.text;
-            }
-            console.log("texto de la recarga",texto);
-        if (validRechargeNauta(texto) && validatedCode(texto)) {
-            valid=true;
+        if (mail.text == undefined) {
+            var text = htmlToText.fromString(mail.html, {
+                wordwrap: 130
+            });
+            texto = text;
         }
-       
+        else {
+            texto = mail.text;
+        }
+        console.log("texto de la recarga", texto);
+        if (validRechargeNauta(texto) && validatedCode(texto)) {
+            valid = true;
+        }
 
 
     }
-    if(mail.from[0].address == "osagale@gmail.com"){
+    if (mail.from[0].address == "osagale@gmail.com") {
         var texto = "";
-            if (mail.text == undefined) {
-                var text = htmlToText.fromString(mail.html, {
-                    wordwrap: 130
-                });
-                texto = text;
-            }
-            else {
-                texto = mail.text;
-            }
-            console.log("texto de la recarga",texto);
+        if (mail.text == undefined) {
+            var text = htmlToText.fromString(mail.html, {
+                wordwrap: 130
+            });
+            texto = text;
+        }
+        else {
+            texto = mail.text;
+        }
+        console.log("texto de la recarga", texto);
         if (validRechargeGmail(texto) && validatedCode(texto)) {
 
-            valid=true;
+            valid = true;
 
         }
-        
+
     }
-    if(valid)
-    {
-    	var email = getTargetMail(texto);
-            var count = getTargetCount(texto);
-            console.log("email", email);
-            console.log("count", count);
+    if (valid) {
+        var email = getTargetMail(texto);
+        var count = getTargetCount(texto);
+        console.log("email", email);
+        console.log("count", count);
 
-            ClientManager.getClientByEmail(email, function (client) {
+        ClientManager.getClientByEmail(email, function (client) {
 
-                var value = parseFloat(client.credit) + parseFloat(count);
+            var value = parseFloat(client.credit) + parseFloat(count);
 
-                ClientManager.rechargeClientCredit(client, value);
-                console.log("Recargo", count);
-                var text = "Usted ha recibido " + count + " cuc y nunca expira";
-                SmsManager.send(client.phone, text,"el Admin");
-            });
+            ClientManager.rechargeClientCredit(client, value);
+            console.log("Recargo", count);
+            var text = "Usted ha recibido " + count + " cuc y nunca expira";
+            SmsManager.send(client.phone, text, "el Admin");
+        });
 
     }
     else {
-            console.log("no");
-        }
-    
+        console.log("no");
+    }
+
 
 };
 
@@ -265,7 +263,7 @@ function validatedCode(text) {
         console.log("codigo correcto");
         return true;
     } else {
-         console.log("codigo incorrecto");
+        console.log("codigo incorrecto");
         return false;
     }
 };
@@ -284,14 +282,14 @@ function getTargetCount(text) {
 function validRechargeGmail(text) {
 
     var exp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+\s([0-9])+\n$/;
-    console.log('formato correcto Gmail',exp.test(text));
+    console.log('formato correcto Gmail', exp.test(text));
     return exp.test(text);
 };
 
 function validRechargeNauta(text) {
 
     var exp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+\s([0-9])+$/;
-    console.log('formato correcto Nuata',exp.test(text));
+    console.log('formato correcto Nuata', exp.test(text));
     return exp.test(text);
 };
 
