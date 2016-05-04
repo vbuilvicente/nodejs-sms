@@ -1,0 +1,4 @@
+Instalar node js, npm y mongodb
+Cambiar la configuracionde la base de datos en el fichero config .js
+Ejecutar el fichero init.js para crear admin
+Ejecutar la app nodejs sever.js
