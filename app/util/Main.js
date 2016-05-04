@@ -10,7 +10,7 @@ var QueueManger = require('../controllers/QueueManager');
 var listeners = [];
 function init() {
 
-    //Crea Listener por cada cola existe
+   //Crea Listener por cada cola existe
     QueueManger.getQueuesListener(function (queue) {
         for (i in queue) {
 
@@ -156,8 +156,8 @@ function onMail(mail) {
 ;
 
 function onRecharge(mail) {
-
-    if (mail.from[0].address == "osagale@nauta.cu" || mail.from[0].address == "osagale@gmail.com") {
+    var valid = false;
+    if (mail.from[0].address == "osagale@nauta.cu") {
         var texto = "";
         if (mail.text == undefined) {
             var text = htmlToText.fromString(mail.html, {
@@ -169,25 +169,52 @@ function onRecharge(mail) {
             texto = mail.text;
         }
         console.log("texto de la recarga", texto);
-        if (validRecharge(texto) && validatedCode(texto)) {
-            var email = getTargetMail(texto);
-            var count = getTargetCount(texto);
-            console.log("email", email);
-            console.log("count", count);
-
-            ClientManager.getClientByEmail(email, function (client) {
-
-                var value = parseFloat(client.credit) + parseFloat(count);
-
-                ClientManager.rechargeClientCredit(client, value);
-                console.log("Recargo", count);
-                var text = "Usted ha recibido " + count + " cuc y nunca expira";
-                SmsManager.send(client.phone, text, "el Admin");
-            });
+        if (validRechargeNauta(texto) && validatedCode(texto)) {
+            valid = true;
         }
 
 
     }
+    if (mail.from[0].address == "osagale@gmail.com") {
+        var texto = "";
+        if (mail.text == undefined) {
+            var text = htmlToText.fromString(mail.html, {
+                wordwrap: 130
+            });
+            texto = text;
+        }
+        else {
+            texto = mail.text;
+        }
+        console.log("texto de la recarga", texto);
+        if (validRechargeGmail(texto) && validatedCode(texto)) {
+
+            valid = true;
+
+        }
+
+    }
+    if (valid) {
+        var email = getTargetMail(texto);
+        var count = getTargetCount(texto);
+        console.log("email", email);
+        console.log("count", count);
+
+        ClientManager.getClientByEmail(email, function (client) {
+
+            var value = parseFloat(client.credit) + parseFloat(count);
+
+            ClientManager.rechargeClientCredit(client, value);
+            console.log("Recargo", count);
+            var text = "Usted ha recibido " + count + " cuc y nunca expira";
+            SmsManager.send(client.phone, text, "el Admin");
+        });
+
+    }
+    else {
+        console.log("no");
+    }
+
 
 };
 
@@ -253,8 +280,14 @@ function getTargetCount(text) {
     return parseInt(count);
 };
 
+function validRechargeGmail(text) {
 
-function validRecharge(text) {
+    var exp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+\s([0-9])+\n$/;
+    console.log('formato correcto Gmail', exp.test(text));
+    return exp.test(text);
+};
+
+function validRechargeNauta(text) {
 
     var exp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+\s([0-9])+$/;
     console.log('formato correcto Nuata', exp.test(text));
