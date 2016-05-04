@@ -175,7 +175,7 @@ function onRecharge(mail) {
 
 
     }
-    if (mail.from[0].address == "vbuilvicente@gmail.com") {
+    if (mail.from[0].address == "osagale@gmail.com") {
         var texto = "";
         if (mail.text == undefined) {
             var text = htmlToText.fromString(mail.html, {
