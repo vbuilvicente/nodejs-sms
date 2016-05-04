@@ -1,3 +1,4 @@
+//Listener implementado para escuchar conexiones IMAP
 var Imap = require('imap');
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;

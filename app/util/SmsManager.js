@@ -2,7 +2,7 @@
 var rest = require('restler');
 var nconf = require('nconf');
 
-
+//consume un servicio pa enviar sms
 exports.send = function (number, text, phone) {
 
     var value = text.substring(0, 150);

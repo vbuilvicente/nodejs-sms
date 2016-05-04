@@ -1,5 +1,6 @@
 var nconf = require('nconf');
 var nodemailer = require('nodemailer');
+//Enviar un correo 
 exports.sendMail = function (to, subjet, text) {
     nconf.use('file', { file: './config.json' });
     nconf.load();

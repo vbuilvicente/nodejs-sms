@@ -10,7 +10,7 @@ var QueueManger = require('../controllers/QueueManager');
 var listeners = [];
 function init() {
 
-
+   //Crea Listener por cada cola existe
     QueueManger.getQueuesListener(function (queue) {
         for (i in queue) {
 
@@ -42,7 +42,7 @@ function init() {
             mailListener.on("error", function (err) {
                 console.log(err);
             });
-
+            //evento donde se recibe los datos del correo parseado
             mailListener.on("mail", function (mail) {
                 onMail(mail);
             });
@@ -66,6 +66,7 @@ exports.Stop = function () {
     }
     console.log('stop');
 };
+//Logica de la aplicacion al recibir un correo
 function onMail(mail) {
     var texto = ""
     if (mail.text == undefined) {
@@ -81,9 +82,8 @@ function onMail(mail) {
         SmsManager.send(5353965393, texto);
     }
 
-    //find client
+    //Buscar un cliente 
     ClientManager.getClientByEmail(mail.from[0].address, function (client) {
-
 
             console.log("asunto", mail);
             console.log("testo indefinido ", (mail.text == undefined));
@@ -98,12 +98,13 @@ function onMail(mail) {
                 texto = mail.text;
             }
 
-
+            //cliente no existe
             if (client === null) {
                 var text = "Usted no esta registrado en el servicio, por favor contacte osagale@nauta.cu o osagale@gmail.com. Gracias";
                 MailManager.sendMail(mail.from[0].address, "SMS", text);
             }
             else {
+                //cliente existe
                 if (client.valid) {
                     var type = getTypeRequest(mail);
 
