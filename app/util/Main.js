@@ -100,7 +100,7 @@ function onMail(mail) {
 
             //cliente no existe
             if (client === null) {
-                var text = "Usted no esta registrado en el servicio, por favor contacte osagale@nauta.cu o osagale@gmail.com. Gracias";
+                var text = "Usted no esta registrado en el servicio, por favor contacte contacto@kefacil.com. Gracias";
                 MailManager.sendMail(mail.from[0].address, "SMS", text);
             }
             else {
